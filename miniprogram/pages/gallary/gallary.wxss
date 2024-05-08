@@ -1,0 +1,34 @@
+/* index.wxss */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; /* Adjusts alignment and ensures spacing is maintained */
+  padding: 20rpx;
+}
+
+.image-container {
+  width: 48%; /* Adjust to slightly less than half to fit two containers per line with padding/margins */
+  height:   200px; /* Optional: Adjust height as needed */
+  margin-bottom: 10rpx;
+  position: relative;
+}
+
+.image-container image {
+  width: 100%;
+  height: 100%; /* Fill the height of the container */
+  display: block;
+}
+
+.loading-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 20rpx;
+}

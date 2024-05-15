@@ -6,7 +6,8 @@
     "pages/message/message",
     "pages/me/me",
     "pages/storyInput/storyInput",
-    "pages/illusion/illusion"
+    "pages/illusion/illusion",
+    "pages/gallary/gallary"
   ],
   "tabBar": {
     "color": "#8a8a8a",
@@ -34,7 +35,7 @@
         "selectedIconPath": "assets/message.png"
       },
       {
-        "pagePath": "pages/me/me",
+        "pagePath": "pages/gallary/gallary",
         "text": "Me",
         "iconPath": "assets/me.png",
         "selectedIconPath": "assets/me.png"

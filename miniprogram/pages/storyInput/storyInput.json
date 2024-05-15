@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "card": "/components/card/card",
+    "progress": "/components/progress/progress",
+    "pill":"/components/pill/pill"
+  }
+} 

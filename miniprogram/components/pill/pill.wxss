@@ -1,0 +1,11 @@
+.pill {
+  font-size: 10px;
+  color: rgb(172, 171, 171);
+  background-color: #7a7a7a63;
+  width: 50px;
+  height: 20px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}

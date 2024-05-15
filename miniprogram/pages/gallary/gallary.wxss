@@ -1,13 +1,13 @@
 /* index.wxss */
 .container {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around; /* Adjusts alignment and ensures spacing is maintained */
-  padding: 20rpx;
+  justify-content: space-evenly;
 }
 
 .image-container {
-  width: 48%; /* Adjust to slightly less than half to fit two containers per line with padding/margins */
+  width:48%; /* Adjust to slightly less than half to fit two containers per line with padding/margins */
   height:   200px; /* Optional: Adjust height as needed */
   margin-bottom: 10rpx;
   position: relative;

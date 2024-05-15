@@ -1,14 +1,50 @@
 {
   "pages": [
-    "pages/gallary/gallary",
-    "pages/index/index"
+    "pages/index/index",
+    "pages/moment/moment",
+    "pages/idea/idea",
+    "pages/message/message",
+    "pages/me/me",
+    "pages/storyInput/storyInput",
+    "pages/illusion/illusion"
   ],
-  "window": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "Demo",
-    "navigationBarBackgroundColor": "#ffffff"
+  "tabBar": {
+    "color": "#8a8a8a",
+    "selectedColor": "#d81e06",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "Moment",
+        "iconPath": "assets/moment.png",
+        "selectedIconPath": "assets/moment.png"
+      },
+      {
+        "pagePath": "pages/illusion/illusion",
+        "text": "Idea",
+        "iconPath": "assets/idea.png",
+        "selectedIconPath": "assets/idea.png"
+      },
+      {
+        "pagePath": "pages/storyInput/storyInput",
+        "text": "Message",
+        "iconPath": "assets/message.png",
+        "selectedIconPath": "assets/message.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "Me",
+        "iconPath": "assets/me.png",
+        "selectedIconPath": "assets/me.png"
+      }
+    ]
   },
-  "style": "v2",
-  "componentFramework": "glass-easel",
-  "lazyCodeLoading": "requiredComponents"
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  }
 }

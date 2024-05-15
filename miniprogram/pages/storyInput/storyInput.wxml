@@ -1,0 +1,38 @@
+<view class="container">
+  <view class="draw-area">
+    <view class="progress-container">
+      <progress step="3"></progress>
+    </view>
+    <view class="subject">
+      <text>subject</text>
+      <input class="search-input" placeholder="请输入你想的主题" />
+    </view>
+
+    <view class="content">
+      <text>content</text>
+      <textarea class="content-input" placeholder="请输入你想的内容" />
+      <view class="content-pill">
+        <pill content="梦境"></pill>
+        <pill content="日记"></pill>
+        <pill content="搞着玩"></pill>
+        <pill content="还有啥"></pill>
+      </view>
+    </view>
+
+    <view class="grid">
+      <text>grid</text>
+      <view class="grid-pill">
+        <pill content="4"></pill>
+        <pill content="6"></pill>
+      </view>
+    </view>
+
+    <view class="grid">
+      <text>Propotion</text>
+      <view class="grid-pill">
+        <pill content="4 : 3"></pill>
+        <pill content="16 : 9"></pill>
+      </view>
+    </view>
+  </view>
+</view>

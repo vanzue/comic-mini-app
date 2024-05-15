@@ -1,8 +1,8 @@
 <!-- index.wxml -->
 <view class="container">
-  <block wx:for="{{images}}" wx:key="index">
+  <block wx:for="{{images}}" wx:key="index" wx:for-index="index">
     <view class="image-container">
-      <image src="{{item.url}}" mode="aspectFill" binderror="handleImageError" bindload="handleImageLoad"></image>
+      <image src="{{item.url}}" mode="aspectFill" binderror="handleImageError" bindload="handleImageLoad" data-index="{{index}}"></image>
       <view class="loading-animation" hidden="{{item.loaded}}">
         <!-- Custom loading animation or use a static loading image -->
         <text>Loading...</text>
@@ -10,4 +10,3 @@
     </view>
   </block>
 </view>
-<custom-buttons></custom-buttons>

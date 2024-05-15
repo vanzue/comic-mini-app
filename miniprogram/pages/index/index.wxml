@@ -1,27 +1,28 @@
-<!--index.wxml-->
-<scroll-view class="scrollarea" scroll-y type="list">
-  <view class="container">
-    <view class="userinfo">
-      <block wx:if="{{canIUseNicknameComp && !hasUserInfo}}">
-        <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
-          <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
-        </button>
-        <view class="nickname-wrapper">
-          <text class="nickname-label">昵称</text>
-          <input type="nickname" class="nickname-input" placeholder="请输入昵称" bind:change="onInputChange" />
-        </view>
-      </block>
-      <block wx:elif="{{!hasUserInfo}}">
-        <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-        <view wx:else> 请使用2.10.4及以上版本基础库 </view>
-      </block>
-      <block wx:else>
-        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-      </block>
+<view class="container">
+  <view class="draw-area">
+    <view class="progress-container">
+      <progress step="1"></progress>
     </view>
-    <view class="usermotto">
-      <text class="user-motto">{{motto}}</text>
+    <view class="search-container">
+      <input class="search-input" />
+      <image class="search-icon" src="/assets/search.svg" />
+    </view>
+    <view class="say-hello">
+      <view class="hello-text">
+        Begin Your journey!
+      </view>
+    </view>
+    <scroll-view scroll-x="true" class="tab-container">
+      <view bindtap="switchTab" data-tag="all" class="tab {{activeTag == 'all' ? 'active' : ''}}">All</view>
+      <view bindtap="switchTab" data-tag="personal" class="tab {{activeTag == 'personal' ? 'active' : ''}}">Personal</view>
+      <view bindtap="switchTab" data-tag="social" class="tab {{activeTag == 'social' ? 'active' : ''}}">Social</view>
+      <view bindtap="switchTab" data-tag="govent" class="tab {{activeTag == 'govent' ? 'active' : ''}}">GovEnt</view>
+      <view bindtap="switchTab" data-tag="business" class="tab {{activeTag == 'business' ? 'active' : ''}}">Business</view>
+    </scroll-view>
+    <view class="card-container">
+      <view wx:for="{{activeCards}}" wx:key="title">
+        <card bind:tap="selectStyle" data-style="{{item.subtitle}}" image="{{item.image}}" title="{{item.title}}" subtitle="{{item.subtitle}}"></card>
+      </view>
     </view>
   </view>
-</scroll-view>
+</view>

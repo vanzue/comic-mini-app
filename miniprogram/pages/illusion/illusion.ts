@@ -3,7 +3,7 @@ import { sampleCards } from '../../utils/constants';
 Page({
   data: {
     activeTag: "all",  // Default to the first tab
-    activeCards: sampleCards
+    
   },
 
   switchTab: function (e: any) {
@@ -21,7 +21,7 @@ Page({
     app.globalData.selectedStyle = style;
 
     wx.navigateTo({
-      url: "/pages/illusion/illusion"
+      url: "/pages/storyInput/storyInput"
     });
   }
 });

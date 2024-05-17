@@ -1,47 +1,15 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/gallary/gallary",
+    "pages/storyInput/storyInput",
+    "pages/landing/landing",
     "pages/moment/moment",
     "pages/idea/idea",
     "pages/message/message",
     "pages/me/me",
-    "pages/storyInput/storyInput",
-    "pages/illusion/illusion",
-    "pages/gallary/gallary"
+    "pages/illusion/illusion"
   ],
-  "tabBar": {
-    "color": "#8a8a8a",
-    "selectedColor": "#d81e06",
-    "backgroundColor": "#ffffff",
-    "borderStyle": "black",
-    "position": "bottom",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "Moment",
-        "iconPath": "assets/moment.png",
-        "selectedIconPath": "assets/moment.png"
-      },
-      {
-        "pagePath": "pages/illusion/illusion",
-        "text": "Idea",
-        "iconPath": "assets/idea.png",
-        "selectedIconPath": "assets/idea.png"
-      },
-      {
-        "pagePath": "pages/storyInput/storyInput",
-        "text": "Message",
-        "iconPath": "assets/message.png",
-        "selectedIconPath": "assets/message.png"
-      },
-      {
-        "pagePath": "pages/gallary/gallary",
-        "text": "Me",
-        "iconPath": "assets/me.png",
-        "selectedIconPath": "assets/me.png"
-      }
-    ]
-  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#ffffff",

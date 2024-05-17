@@ -3,13 +3,12 @@
     <view class="progress-container">
       <progress step="1"></progress>
     </view>
-    <view class="search-container">
-      <input class="search-input" />
-      <image class="search-icon" src="/assets/search.svg" />
-    </view>
     <view class="say-hello">
       <view class="hello-text">
-        Begin Your journey!
+        Begin Your Comic!
+      </view>
+      <view class="skip">
+        Skip, next
       </view>
     </view>
     <scroll-view scroll-x="true" class="tab-container">
@@ -25,4 +24,5 @@
       </view>
     </view>
   </view>
+  <navigation />
 </view>

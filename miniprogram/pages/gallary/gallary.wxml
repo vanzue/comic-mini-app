@@ -4,4 +4,5 @@
       <progress step="4"></progress>
     </view>
   </view>
+  <navigation />
 </view>

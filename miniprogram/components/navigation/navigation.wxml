@@ -1,0 +1,25 @@
+<view class="navigation-container">
+  <view class="nav-item">
+    <image class="nav-icon" src="/assets/bottom/bottom_moment.png" mode="aspectFit"></image>
+    <view class="nav-text">Moment</view>
+  </view>
+
+  <view class="nav-item">
+    <image class="nav-icon" src="/assets/bottom/bottom_idea.png" mode="aspectFit"></image>
+    <view class="nav-text">Idea</view>
+  </view>
+
+  <view class="nav-item profile">
+    <image class="profile-icon" src="/assets/bottom/bottom_center.png" mode="aspectFit" />
+    <view class="nav-text">Moment</view>
+  </view>
+
+  <view class="nav-item">
+    <image class="nav-icon" src="/assets/bottom/bottom_message.png" mode="aspectFit"></image>
+    <view class="nav-text">Message</view>
+  </view>
+  <view class="nav-item">
+    <image class="nav-icon" src="/assets/bottom/bottom_me.png" mode="aspectFit"></image>
+    <view class="nav-text">Me</view>
+  </view>
+</view>

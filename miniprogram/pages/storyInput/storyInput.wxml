@@ -35,4 +35,5 @@
       </view>
     </view>
   </view>
+  <navigation />
 </view>

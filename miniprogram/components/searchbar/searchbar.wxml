@@ -1,0 +1,4 @@
+<view class="search-container">
+  <input class="search-input" />
+  <image class="search-icon" src="/assets/search.svg" />
+</view>

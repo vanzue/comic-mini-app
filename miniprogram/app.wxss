@@ -17,6 +17,7 @@
   justify-content: center;
   align-items: center;
   width: 90%;
+  padding-bottom: 120rpx; /* 留出底部导航栏的空间 */
 }
 
 .progress-container{

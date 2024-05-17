@@ -1,0 +1,6 @@
+<!--pages/landing/landing.wxml-->
+<view class="container">
+  <view class="draw-area">
+  </view>
+  <navigation />
+</view>

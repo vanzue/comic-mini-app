@@ -9,3 +9,8 @@
   align-items: center;
   justify-content: center;
 }
+
+.pill.active {
+  background-color: #ffffff;
+  color: #000000;
+}

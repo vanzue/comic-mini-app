@@ -1,3 +1,3 @@
-<view class="pill">
+<view class="pill {{selected?'active':''}}" bind:tap="handleTap">
   {{content}}
 </view>

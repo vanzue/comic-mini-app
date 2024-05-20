@@ -10,45 +10,56 @@
 
     <view class="content">
       <text>content</text>
-      <textarea class="custom-textarea" placeholder="| Please enter the content ..." bindinput="onInput" maxlength="1500"></textarea>
+      <textarea class="custom-textarea" placeholder="| Please enter the content ..." bindinput="onInput" maxlength="1500" id="myTextArea" value="{{inputValue}}"></textarea>
       <view class="footer">
         <view class="overlay">
           <view class="actions">
-            <text bindtap="onPaste">Paste</text>
-            <text bindtap="onClear">Clear</text>
+            <view class="actions-paste" bindtap="onPaste">
+              <text>Paste</text>
+            </view>
+            <view class="actions-clear" bindtap="onClear">
+              <text>Clear</text>
+            </view>
           </view>
           <text class="char-count">{{charCount}}/1500</text>
         </view>
       </view>
-      <view class="content-pill">
-        <pill class="content-item" content="dream"></pill>
-        <pill class="content-item" content="diary"></pill>
-        <pill class="content-item" content="notice"></pill>
-        <pill class="content-item" content="story"></pill>
+      <view wx:if="{{!hint}}" class="content-pill">
+        <pill class="content-item" content="dream" bind:hint="handleSelectHint" eventName="hint" metadata="dream"></pill>
+        <pill class="content-item" content="diary" bind:hint="handleSelectHint" eventName="hint" metadata="diary"></pill>
+        <pill class="content-item" content="notice" bind:hint="handleSelectHint" eventName="hint" metadata="notice"></pill>
+        <pill class="content-item" content="story" bind:hint="handleSelectHint" eventName="hint" metadata="story"></pill>
+      </view>
+      <view wx:if="{{!!hint}}" class="content-pill">
+        <pill class="content-hint" content="{{hint}}" bind:dispose-hint="handleDisposeHint" eventName="dispose-hint" metadata=""></pill>
       </view>
     </view>
 
     <view class="grid">
       <text>grid</text>
       <view class="proportion-pill">
-        <pill class="grid-item" content="1"></pill>
-        <pill class="grid-item" content="2"></pill>
-        <pill class="grid-item" content="4"></pill>
+        <pill class="grid-item" content="1" bind:select-grid="handleSelectGrid" eventName="select-grid" metadata="1" selected="{{selectedGrid=='1'}}"></pill>
+        <pill class="grid-item" content="2" bind:select-grid="handleSelectGrid" eventName="select-grid" metadata="2" selected="{{selectedGrid=='2'}}"></pill>
+        <pill class="grid-item" content="4" bind:select-grid="handleSelectGrid" eventName="select-grid" metadata="4" selected="{{selectedGrid=='4'}}"></pill>
       </view>
     </view>
 
     <view class="grid">
       <text>Propotion</text>
       <view class="proportion-pill">
-        <pill class="proportion-item" content="1 : 1"></pill>
-        <pill class="proportion-item" content="3 : 4"></pill>
-        <pill class="proportion-item" content="16 : 9"></pill>
-        <pill class="proportion-item" content="Tiktok"></pill>
-        <pill class="proportion-item" content="Xiaohongshu"></pill>
-        <pill class="proportion-item" content="Weibo"></pill>
-        <pill class="proportion-item" content="Email"></pill>
-        <pill class="proportion-item" content="Wechat"></pill>
+        <pill class="proportion-item" content="1 : 1" bind:select-proportion="handleSelectPropotion" eventName="select-proportion" metadata="1 : 1" selected="{{selectedPropotion=='1 : 1'}}"></pill>
+        <pill class="proportion-item" content="3 : 4" bind:select-proportion="handleSelectPropotion" eventName="select-proportion" metadata="3 : 4" selected="{{selectedPropotion=='3 : 4'}}"></pill>
+        <pill class="proportion-item" content="16 : 9" bind:select-proportion="handleSelectPropotion" eventName="select-proportion" metadata="16 : 9" selected="{{selectedPropotion=='16 : 9'}}"></pill>
+        <pill class="proportion-item" content="Tiktok" bind:select-proportion="handleSelectPropotion" eventName="select-proportion" metadata="Tiktok" selected="{{selectedPropotion=='Tiktok'}}"></pill>
+        <pill class="proportion-item" content="Xiaohongshu" bind:select-proportion="handleSelectPropotion" eventName="select-proportion" metadata="Xiaohongshu" selected="{{selectedPropotion=='Xiaohongshu'}}"></pill>
+        <pill class="proportion-item" content="Weibo" bind:select-proportion="handleSelectPropotion" eventName="select-proportion" metadata="Weibo" selected="{{selectedPropotion=='Weibo'}}"></pill>
+        <pill class="proportion-item" content="Email" bind:select-proportion="handleSelectPropotion" eventName="select-proportion" metadata="Email" selected="{{selectedPropotion=='Email'}}"></pill>
+        <pill class="proportion-item" content="Wechat" bind:select-proportion="handleSelectPropotion" eventName="select-proportion" metadata="Wechat" selected="{{selectedPropotion=='Wechat'}}"></pill>
       </view>
+    </view>
+    <view class="button-group">
+      <confirmButton text="Back" bind:back = "goback" eventName="back" />
+      <confirmButton text="Generate" bind:generate="generateStory" eventName="generate" />
     </view>
   </view>
   <navigation />

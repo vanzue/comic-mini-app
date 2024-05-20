@@ -3,6 +3,15 @@
     <view class="progress-container">
       <progress step="4"></progress>
     </view>
+
+    <view class = "comic-container">
+      <view class="image"></view>
+    </view>
+
+    <view class="button-group">
+      <confirmButton text="Back" bind:back="goBack" eventName="back" />
+      <confirmButton text="OK" bind:ok="selectStyle" eventName="ok" />
+    </view>
   </view>
   <navigation />
 </view>

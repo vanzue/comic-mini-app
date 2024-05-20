@@ -1,8 +1,8 @@
 Component({
   properties: {
-    content: {
-      type: String,
-      value: "",
+    text:{
+      type:String,
+      value:""
     },
     eventName: {
       type: String,
@@ -11,11 +11,7 @@ Component({
     metadata: {
       type: String,
       value: ""
-    },
-    selected: {
-      type: Boolean,
-      value: false
-    }
+    },  
   },
   methods: {
     handleTap: function () {

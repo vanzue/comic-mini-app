@@ -1,0 +1,13 @@
+.selection-button{
+  width: 96px;
+  height: 36px;
+  border-radius: 14px; /* 圆角的大小 */
+  border: #d6d2d2 solid 1px;
+  background: black;
+  margin: 10px 10px 10px 10px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}

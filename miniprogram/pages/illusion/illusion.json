@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "card": "/components/card/card",
-    "progress": "/components/progress/progress"
+    "progress": "/components/progress/progress",
+    "confirmButton": "/components/confirmButton/confirmButton"
   }
 } 

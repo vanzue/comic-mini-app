@@ -1,0 +1,3 @@
+<view class="selection-button" bind:tap="handleTap">
+  {{text}}
+</view>

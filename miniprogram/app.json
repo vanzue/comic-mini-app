@@ -1,9 +1,9 @@
 {
   "pages": [
-    "pages/storyInput/storyInput",
-    "pages/illusion/illusion",
     "pages/index/index",
     "pages/gallary/gallary",
+    "pages/storyInput/storyInput",
+    "pages/illusion/illusion",
     "pages/landing/landing",
     "pages/moment/moment",
     "pages/idea/idea",

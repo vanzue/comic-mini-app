@@ -23,11 +23,7 @@
   </view>
 
   <view class="button-group">
-    <view class="selection-button" bind:tap="goBack">
-      Back
-    </view>
-    <view class="selection-button" bind:tap="selectStyle">
-      OK
-    </view>
+    <confirmButton text="Back" bind:back = "goBack" eventName="back" />
+    <confirmButton text="OK" bind:ok = "selectStyle" eventName="ok" />
   </view>
 </view>

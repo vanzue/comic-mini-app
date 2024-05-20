@@ -27,17 +27,12 @@
   z-index: 3;
 }
 
-.pill:nth-child(2) {
-  left: 23%;
-  z-index: 3;
-}
-
 .pill:nth-child(3) {
   left: 46%;
   z-index: 2;
 }
 
-.text{
+.text {
   position: absolute;
   right: 30%;
 }
@@ -63,6 +58,10 @@
 }
 
 .active-4 {
-  background-color: rgb(163, 0, 0);
+  background-color: #D06300;
   color: #000000;
+}
+
+.text.first-pill {
+  right: 40%;
 }

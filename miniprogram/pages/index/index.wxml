@@ -19,8 +19,8 @@
       <view bindtap="switchTab" data-tag="business" class="tab {{activeTag == 'business' ? 'active' : ''}}">Business</view>
     </scroll-view>
     <view class="card-container">
-      <view wx:for="{{activeCards}}" wx:key="title">
-        <card bind:tap="selectStyle" data-style="{{item.subtitle}}" image="{{item.image}}" title="{{item.title}}" subtitle="{{item.subtitle}}"></card>
+      <view wx:for="{{activeCards}}" wx:key="title" class="card">
+          <card bind:tap="selectStyle" data-style="{{item.classification}}" image="{{item.image}}" title="{{item.title}}" subtitle="{{item.subtitle}}"></card>
       </view>
     </view>
   </view>

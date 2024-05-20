@@ -1,27 +1,48 @@
-import { sampleCards } from '../../utils/constants';
-
 Page({
   data: {
-    activeTag: "all",  // Default to the first tab
-    
+    reviewingStyle: "",
+    styleName: ""
   },
 
-  switchTab: function (e: any) {
-    const tag = e.currentTarget.dataset.tag;
+  onLoad: function () {
     this.setData({
-      activeTag: tag,
-      activeCards: sampleCards.filter(c => tag == "all" || c.subtitle.toLowerCase() == tag)
+      reviewingStyle: "american",
+      styleName: "American Comic"
+    })
+  },
+
+  onSwiperChange: function (e: { detail: { current: any; }; }) {
+    const styleList = [
+      {
+        style: "american",
+        name: "American Comic"
+      },
+      {
+        style: "korean",
+        name: "Korean Comic"
+      },
+      {
+        style: "chinese",
+        name: "Chinese Comic"
+      }
+    ];
+    const current = e.detail.current;
+    const targetStyle = styleList[current].style;
+    const targetName = styleList[current].name;
+    this.setData({
+      reviewingStyle: targetStyle,
+      styleName: targetName
     });
   },
 
-  selectStyle: function (e: any) {
-    const style = e.currentTarget.dataset.style;
-    console.log(style);
-    var app = getApp();
-    app.globalData.selectedStyle = style;
-
+  selectStyle: function () {
     wx.navigateTo({
-      url: "/pages/storyInput/storyInput"
+      url: `/pages/storyInput/storyInput?style=${this.data.reviewingStyle}`
+    });
+  },
+  goBack: function () {
+    wx.navigateTo({
+      url: "/pages/index/index"
     });
   }
 });

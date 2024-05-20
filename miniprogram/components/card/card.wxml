@@ -1,6 +1,6 @@
 <view class="card">
   <view class="card-content">
-    <image class="card-image" src="{{image}}" mode="aspectFit"></image>
+    <image class="card-image" src="{{image}}" mode="scaleToFill"></image>
     <view class="description">
       <view class="card-title">{{title}}</view>
       <view class="card-subtitle">{{subtitle}}</view>

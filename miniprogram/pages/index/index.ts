@@ -1,25 +1,28 @@
-import { sampleCards } from '../../utils/constants';
+import { getSampleCards } from '../../utils/mock';
+import {Card} from '../../utils/types'
 
 Page({
   data: {
     activeTag: "all",  // Default to the first tab
-    activeCards: sampleCards
+    activeCards: [] as Card[]
+  },
+
+  onLoad: function () {
+    this.setData({
+      activeCards: getSampleCards(),
+    })
   },
 
   switchTab: function (e: any) {
     const tag = e.currentTarget.dataset.tag;
+    const sampleCards = getSampleCards();
     this.setData({
       activeTag: tag,
-      activeCards: sampleCards.filter(c => tag == "all" || c.subtitle.toLowerCase() == tag)
+      activeCards: sampleCards.filter(c => tag == "all" || c.classification.toLowerCase() == tag)
     });
   },
 
-  selectStyle: function (e: any) {
-    const style = e.currentTarget.dataset.style;
-    console.log(style);
-    var app = getApp();
-    app.globalData.selectedStyle = style;
-
+  selectStyle: function () {
     wx.navigateTo({
       url: "/pages/illusion/illusion"
     });

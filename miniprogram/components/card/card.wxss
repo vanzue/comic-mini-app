@@ -1,20 +1,21 @@
 .card {
-  width: 100%; /* 确保组件宽度自动适应父容器 */
   background-color: rgba(51, 51, 51, 0);
   border-radius: 10px;
   overflow: hidden;
+  width: 100%;
 }
 
 .card-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   margin: 5px;
 }
 
 .card-image {
-  width: 100px;
-  height: 125px;
+  width: 100%;
+  border-radius: 8px;
+  max-height: 16vh;
 }
 
 .description{
@@ -22,11 +23,11 @@
 }
 
 .card-title {
-  font-size: 12px;
+  font-size: 10px;
   color: #fff;
 }
 
 .card-subtitle {
   font-size: 10px;
-  color: #7c8453;
+  color: #FFE55A;
 }

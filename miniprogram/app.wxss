@@ -5,10 +5,20 @@
   padding-top: 50px;
   align-items: center;
   justify-content: flex-start;
-  background-color: #000000;
+  background:
+    linear-gradient(rgba(29, 29, 29, 0.7), rgba(29, 29, 29, 0.7)),
+    /* 背景颜色，使用半透明度 */
+    url('https://comicstorage.blob.core.windows.net/comics/background_light-min.png');
+  background-repeat: repeat;
+  /* 平铺背景图像 */
+  background-blend-mode: overlay;
+  background-size: 100% 100vh;
+  /* 叠加模式 */
   width: 100%;
-  height: 100vh; /* Use viewport height to ensure full screen height */
-  min-height: 100vh; /* Ensure it covers at least the full viewport height */
+  height: 100vh;
+  /* Use viewport height to ensure full screen height */
+  min-height: 100vh;
+  /* Ensure it covers at least the full viewport height */
 }
 
 .draw-area {
@@ -17,9 +27,10 @@
   justify-content: center;
   align-items: center;
   width: 90%;
-  padding-bottom: 120rpx; /* 留出底部导航栏的空间 */
+  padding-bottom: 120rpx;
+  /* 留出底部导航栏的空间 */
 }
 
-.progress-container{
+.progress-container {
   width: 90%;
 }

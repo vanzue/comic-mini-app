@@ -5,33 +5,49 @@
     </view>
     <view class="subject">
       <text>subject</text>
-      <input class="search-input" placeholder="请输入你想的主题" />
+      <input class="search-input" placeholder="| Please enter your topic" />
     </view>
 
     <view class="content">
       <text>content</text>
-      <textarea class="content-input" placeholder="请输入你想的内容" />
+      <textarea class="custom-textarea" placeholder="| Please enter the content ..." bindinput="onInput" maxlength="1500"></textarea>
+      <view class="footer">
+        <view class="overlay">
+          <view class="actions">
+            <text bindtap="onPaste">Paste</text>
+            <text bindtap="onClear">Clear</text>
+          </view>
+          <text class="char-count">{{charCount}}/1500</text>
+        </view>
+      </view>
       <view class="content-pill">
-        <pill content="梦境"></pill>
-        <pill content="日记"></pill>
-        <pill content="搞着玩"></pill>
-        <pill content="还有啥"></pill>
+        <pill class="content-item" content="dream"></pill>
+        <pill class="content-item" content="diary"></pill>
+        <pill class="content-item" content="notice"></pill>
+        <pill class="content-item" content="story"></pill>
       </view>
     </view>
 
     <view class="grid">
       <text>grid</text>
-      <view class="grid-pill">
-        <pill content="4"></pill>
-        <pill content="6"></pill>
+      <view class="proportion-pill">
+        <pill class="grid-item" content="1"></pill>
+        <pill class="grid-item" content="2"></pill>
+        <pill class="grid-item" content="4"></pill>
       </view>
     </view>
 
     <view class="grid">
       <text>Propotion</text>
-      <view class="grid-pill">
-        <pill content="4 : 3"></pill>
-        <pill content="16 : 9"></pill>
+      <view class="proportion-pill">
+        <pill class="proportion-item" content="1 : 1"></pill>
+        <pill class="proportion-item" content="3 : 4"></pill>
+        <pill class="proportion-item" content="16 : 9"></pill>
+        <pill class="proportion-item" content="Tiktok"></pill>
+        <pill class="proportion-item" content="Xiaohongshu"></pill>
+        <pill class="proportion-item" content="Weibo"></pill>
+        <pill class="proportion-item" content="Email"></pill>
+        <pill class="proportion-item" content="Wechat"></pill>
       </view>
     </view>
   </view>

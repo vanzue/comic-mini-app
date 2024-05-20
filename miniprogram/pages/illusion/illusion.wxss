@@ -3,25 +3,32 @@
   align-items: center;
   color: #ffffff;
   margin: 20px;
+  font-weight: 700;
+  font-size: 24px;
 }
 
 .swiper-container {
-  width: 50%; /* 调整为适合的宽度 */
-  border-radius: 20px; /* 圆角的大小 */
-  overflow: hidden; /* 隐藏超出圆角部分的图片 */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* 可选的阴影效果 */
-  height: 300px;
-  margin-bottom: 30px;
+  width: 100%;  /* Adjust the width as needed */
+  height: 50vh;
 }
 
-.swiper-style{
-  height: 100%;
+.swiper-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.gradient-background{
-  width: 100%; /* 背景宽度填充整个容器 */
-  height: 800px; /* 调整高度 */
-  background: linear-gradient(to right, #e7eaec, #8b9fa0); /* 默认渐变色 */
+.swiper-image {
+  border-radius: 10px;
+  transition: transform 0.3s;
+  height: 80%;
+  width: 80%;
+  opacity: 0.3;
+}
+
+.active{
+  transform: scale(1.1);
+  opacity: 1.0;
 }
 
 .button-group{
@@ -32,10 +39,21 @@
 }
 
 .selection-button{
-  width: 14%;
-  height: 20px;
-  border-radius: 8px; /* 圆角的大小 */
+  width: 20%;
+  height: 36px;
+  border-radius: 14px; /* 圆角的大小 */
   border: #d6d2d2 solid 1px;
   background: black;
   margin: 10px 10px 10px 10px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.style-name{
+  color: #ffffff;
+  font-family: 'Langar', cursive;
+  font-weight: 400;
+  font-size: 32px;
 }

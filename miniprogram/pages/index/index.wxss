@@ -44,7 +44,7 @@
   color: #fff;
   border: solid 1px white;
   background-color: black;
-  width: 30%;
+  width: 25%;
   height: 20px;
   border-radius: 12px;
   display: inline-flex;
@@ -67,10 +67,9 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-between;
   /* 在每行组件之间留出空隙 */
   background-color: #000;
-  padding: 10px;
 }
 
 .place-holder {
@@ -80,4 +79,9 @@
 .skip {
   color: rgb(167, 165, 165);
   font-size: 20rpx;
+}
+
+.card {
+  width: 32%;
+  height: 25vh;
 }

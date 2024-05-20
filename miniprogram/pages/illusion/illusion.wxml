@@ -1,33 +1,33 @@
 <view class="container">
-  <view class="draw-area">
-    <view class="progress-container">
-      <progress step="2"></progress>
-    </view>
-    <view class="illusion-title">
-      illustration
-    </view>
+  <view class="progress-container">
+    <progress step="2"></progress>
+  </view>
+  <view class="illusion-title">
+    Choose Your Style!
+  </view>
 
-    <view class="swiper-container">
-      <swiper indicator-dots="true" circular="true" autoplay="false" interval="5000" duration="500" class="swiper-style">
-        <swiper-item>
-          <view class="gradient-background"></view>
-        </swiper-item>
-        <swiper-item>
-          <view class="gradient-background"></view>
-        </swiper-item>
-        <swiper-item>
-          <view class="gradient-background"></view>
-        </swiper-item>
-        <swiper-item>
-          <view class="gradient-background"></view>
-        </swiper-item>
-      </swiper>
+  <swiper class="swiper-container" indicator-dots circular previous-margin="100rpx" next-margin="100rpx" bindchange="onSwiperChange">
+    <swiper-item class="swiper-item">
+      <image src="https://comicstorage.blob.core.windows.net/comics/american-style.png" class="swiper-image  {{reviewingStyle=='american'?'active':''}}" mode="scaleToFill" />
+    </swiper-item>
+    <swiper-item class="swiper-item">
+      <image src="https://comicstorage.blob.core.windows.net/comics/korean-style.png" class="swiper-image  {{reviewingStyle=='korean'?'active':''}}" mode="scaleToFill" />
+    </swiper-item>
+    <swiper-item class="swiper-item">
+      <image src="https://comicstorage.blob.core.windows.net/comics/chinese.png" class="swiper-image {{reviewingStyle=='chinese'?'active':''}}" mode="scaleToFill" />
+    </swiper-item>
+  </swiper>
+
+  <view class="style-name">
+    {{styleName}}
+  </view>
+
+  <view class="button-group">
+    <view class="selection-button" bind:tap="goBack">
+      Back
     </view>
-    <view class="button-group">
-      <view class="selection-button">
-      </view>
-      <view class="selection-button">
-      </view>
+    <view class="selection-button" bind:tap="selectStyle">
+      OK
     </view>
   </view>
 </view>

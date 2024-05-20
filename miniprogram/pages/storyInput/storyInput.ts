@@ -8,12 +8,13 @@ interface PageData {
 Page({
   data: {
     inputValue: '',
-    selectedStyle: '' // Initially no style is selected
+    selectedStyle: '', // Initially no style is selected
+    charCount: 0
   },
 
   onLoad() {
     this.setData({
-      selectedStyle:""
+      selectedStyle: ""
     })
   },
   checkWordLimit(this: any, e: any) {
@@ -89,6 +90,23 @@ Page({
     });
     wx.navigateTo({
       url: "/pages/gallary/gallary"
+    });
+  },
+  onInput: function (e: { detail: { value: string | any[]; }; }) {
+    this.setData({
+      charCount: e.detail.value.length,
+    });
+  },
+
+  onPaste: function () {
+    // Implement the paste functionality
+    // This is a placeholder, actual paste functionality will depend on the app's logic
+    console.log("Paste action triggered");
+  },
+
+  onClear: function () {
+    this.setData({
+      charCount: 0,
     });
   }
 });

@@ -1,14 +1,14 @@
 {
   "pages": [
+    "pages/storyInput/storyInput",
+    "pages/illusion/illusion",
     "pages/index/index",
     "pages/gallary/gallary",
-    "pages/storyInput/storyInput",
     "pages/landing/landing",
     "pages/moment/moment",
     "pages/idea/idea",
     "pages/message/message",
-    "pages/me/me",
-    "pages/illusion/illusion"
+    "pages/me/me"
   ],
   "window": {
     "backgroundTextStyle": "light",

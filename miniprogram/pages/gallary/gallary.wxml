@@ -4,13 +4,13 @@
       <progress step="4"></progress>
     </view>
 
-    <view class = "comic-container">
-      <view class="image"></view>
+    <view if="{{!!urls}}" class="comic-container">
+      <image src="{{urls[0]}}" mode="aspectFit"></image>
     </view>
 
     <view class="button-group">
       <confirmButton text="Back" bind:back="goBack" eventName="back" />
-      <confirmButton text="OK" bind:ok="selectStyle" eventName="ok" />
+      <confirmButton text="OK" bind:ok="done" eventName="ok" />
     </view>
   </view>
   <navigation />

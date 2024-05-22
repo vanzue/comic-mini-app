@@ -1,35 +1,57 @@
+import { ApiKey, ComicCreateApiEndpoint } from "../../utils/constants";
+
 // index.ts
 Page({
   data: {
-    loaded: false,
-    urls: [] as String[]
+    grid: 1,
+    urls: [] as String[],
+    proportion: "1 : 1",
   },
-
   onLoad(option) {
-    const story = option.story;
-    const grid = option.grid;
-    const proportion = option.proportion;
-    console.log(story, grid, proportion);
+    this.setData({
+      grid: Number(option.grid),
+      proportion: option.proportion
+    });
+    const apiUrl = ComicCreateApiEndpoint; // 替换为你的API URL
+    const apiKey = ApiKey; // 替换为你的API密钥
+    const postData = {
+      shortStory: option.story,
+      n: Number(option.grid),
+      style:option.style
+    };
 
     wx.showLoading({
       title: '',
       mask: true
     });
-  },
 
-  handleImageLoad(e: { currentTarget: { dataset: { index: any; }; }; }) {
-    const index = e.currentTarget.dataset.index;
-    const imageProperty = `images[${index}].loaded`;
-    this.setData({
-      [imageProperty]: true
+    wx.request({
+      url: apiUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json', // 默认值
+        'x-api-key': apiKey
+      },
+      data: postData,
+      success: (res) => {
+        console.log("generate done,", res);
+        this.setData({
+          urls: res.data as String[]
+        });
+      },
+      fail: (err) => {
+        console.log(err);
+        wx.showToast({ title: "Something went wrong, please try again", icon: 'none', duration: 2000 });
+      },
+      complete: () => {
+        wx.hideLoading();
+      }
     });
   },
 
-  handleImageError(e: { currentTarget: { dataset: { index: any; }; }; }) {
-    const index = e.currentTarget.dataset.index;
-    const imageProperty = `images[${index}].loaded`;
-    this.setData({
-      [imageProperty]: true
+  goBack: function () {
+    wx.navigateTo({
+      url: "/pages/storyInput/storyInput"
     });
   }
 }

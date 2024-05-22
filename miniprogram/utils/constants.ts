@@ -17,3 +17,7 @@ export const Hot2Sample: String = "https://comicstorage.blob.core.windows.net/co
 export const ModernSample: String = "https://comicstorage.blob.core.windows.net/comics/modern style 1-min.png";
 
 export const AvailableStyles = ["american", "chinese", "japan"];
+
+export const ComicCreateApiEndpoint = "https://comic-web-app.azurewebsites.net/generate/comics"
+
+export const ApiKey = "6PG2oz3HzR9fY4siesUMJxKbZRxn/h4Q+qAIlbQ0/pQ="

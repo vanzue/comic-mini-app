@@ -39,7 +39,7 @@ Page({
       return;
     }
     wx.navigateTo({
-      url: `/pages/gallary/gallary?story=${this.data.inputValue}&grid=${this.data.selectedGrid}&proportion=${this.data.selectedPropotion}`
+      url: `/pages/gallary/gallary?story=${this.data.inputValue}&grid=${this.data.selectedGrid}&proportion=${this.data.selectedPropotion}&style=${this.data.selectedStyle}`
     });
   },
   onInput: function (e: { detail: { value: string; }; }) {
@@ -51,15 +51,14 @@ Page({
   },
 
   onPaste: function () {
-    const that = this;
     wx.getClipboardData({
-      success(res) {
-        const currentText = that.data.inputValue + res.data;
-        that.setData({
+      success: res => {
+        const currentText = this.data.inputValue + res.data;
+        this.setData({
           inputValue: currentText,
           charCount: currentText.length
         });
-        console.log("Paste action triggered: ", res.data);
+        console.log("Paste action triggered: ", currentText);
       },
       fail(err) {
         console.log("Failed to get clipboard data: ", err);

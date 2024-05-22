@@ -18,6 +18,7 @@ export const ModernSample: String = "https://comicstorage.blob.core.windows.net/
 
 export const AvailableStyles = ["american", "chinese", "japan"];
 
-export const ComicCreateApiEndpoint = "https://comic-web-app.azurewebsites.net/generate/comics"
+// export const ComicCreateApiEndpoint = "https://comic-web-app.azurewebsites.net/generate/comics"
+export const ComicCreateApiEndpoint = "https://flask-6pml-108240-6-1326649872.sh.run.tcloudbase.com/"
 
 export const ApiKey = "6PG2oz3HzR9fY4siesUMJxKbZRxn/h4Q+qAIlbQ0/pQ="

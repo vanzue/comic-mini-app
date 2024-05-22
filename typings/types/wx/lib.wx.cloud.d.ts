@@ -162,6 +162,7 @@ declare namespace ICloud {
     type CallContainerData = AnyObject
 
     interface CallContainerResult extends IAPISuccessParam {
+        result: any
         data: any
         statusCode: number
         header: Record<string, any>

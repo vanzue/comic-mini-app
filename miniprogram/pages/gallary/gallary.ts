@@ -20,13 +20,13 @@ Page({
         env: 'prod-2gsuyczv841bd4e9'
       });
     }
-    this.callContainerAPI();
+    this.callContainerAPI(option.story ?? "");
   },
 
-  callContainerAPI: async function () {
+  callContainerAPI: async function (shortStory: String) {
     const apiKey = ApiKey;
     const postData = {
-      "shortStory": "一只小猫和一个小狗在森林里散步",
+      "shortStory": shortStory,
       "n": 1,
       "style": "chinese"
     };

@@ -20,7 +20,7 @@ Page({
         env: 'prod-2gsuyczv841bd4e9'
       });
     }
-    this.callContainerAPI(option.story ?? "");
+    this.callContainerAPI(option.story || "小猫和小狗在打架");
   },
 
   callContainerAPI: async function (shortStory: String) {

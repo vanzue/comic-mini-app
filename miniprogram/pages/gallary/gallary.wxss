@@ -27,6 +27,7 @@
 .grid-1 {
   width: 100%;
   height: 100%;
+  align-items: center;
 }
 
 .grid-2 {
@@ -65,5 +66,9 @@
 .image-wrapper-2{
   width: 48%;
   border:solid 1px #ffffff;
-  padding-bottom: 50%;
+}
+
+.image-wrapper-1{
+  width: 100%;
+  border:solid 1px #ffffff;
 }

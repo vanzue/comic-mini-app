@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/gallary/gallary",
     "pages/index/index",
+    "pages/gallary/gallary",
     "pages/storyInput/storyInput",
     "pages/illusion/illusion",
     "pages/landing/landing",

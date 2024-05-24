@@ -10,9 +10,12 @@ Page({
   },
   async onLoad(option) {
     this.setData({
-      grid: Number(option.grid),
-      proportion: option.proportion
+      grid: Number(option.grid || 2),
+      proportion: option.proportion || "1 : 1",
+      urls: ["https://dalleprodsec.blob.core.windows.net/private/images/b7afa12d-d413-453d-9099-a32756b67be9/generated_00.png?se=2024-05-25T05%3A03%3A54Z&sig=6l2i4VoQgvCgXp5DrJ8a5KPa%2FlGNc8APjZceWu4n954%3D&ske=2024-05-31T01%3A17%3A49Z&skoid=e52d5ed7-0657-4f62-bc12-7e5dbb260a96&sks=b&skt=2024-05-24T01%3A17%3A49Z&sktid=33e01921-4d64-4f8c-a055-5bdaffd5e33d&skv=2020-10-02&sp=r&spr=https&sr=b&sv=2020-10-02", "https://dalleprodsec.blob.core.windows.net/private/images/b7afa12d-d413-453d-9099-a32756b67be9/generated_00.png?se=2024-05-25T05%3A03%3A54Z&sig=6l2i4VoQgvCgXp5DrJ8a5KPa%2FlGNc8APjZceWu4n954%3D&ske=2024-05-31T01%3A17%3A49Z&skoid=e52d5ed7-0657-4f62-bc12-7e5dbb260a96&sks=b&skt=2024-05-24T01%3A17%3A49Z&sktid=33e01921-4d64-4f8c-a055-5bdaffd5e33d&skv=2020-10-02&sp=r&spr=https&sr=b&sv=2020-10-02"]
     });
+    console.log('grid', this.data.grid);
+    console.log('proportion', this.data.proportion);
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力');
     } else {
@@ -25,6 +28,7 @@ Page({
 
   callContainerAPI: async function (shortStory: String) {
     const apiKey = ApiKey;
+    console.log('short story', shortStory);
     const postData = {
       "shortStory": shortStory,
       "n": 1,
@@ -84,9 +88,9 @@ Page({
         if (jobData.JobStatus === 'Success') {
           const urlList = JSON.parse(jobData.Result);
           console.log(urlList);
-          this.setData({
-            urls: urlList
-          });
+          // this.setData({
+          //   urls: urlList
+          // });
           wx.hideLoading();
         } else if (jobData.JobStatus === 'Failed') {
           wx.showToast({ title: "Job failed, please try again", icon: 'none', duration: 2000 });

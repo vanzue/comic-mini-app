@@ -8,17 +8,17 @@
       <view wx:if="{{proportion === '1 : 1'}}" class="proportion-container">
         <view wx:if="{{grid === 1}}" class="grid-container grid-1">
           <view wx:for="{{urls}}" wx:key="index" class="image-wrapper-1">
-            <image class="img" src="{{item}}" mode="scaleToFill"></image>
+            <image bindtap="previewImage" class="img" src="{{item}}" mode="aspectFill"></image>
           </view>
         </view>
         <view wx:if="{{grid === 2}}" class="grid-container grid-2">
           <view wx:for="{{urls}}" wx:key="index" class="image-wrapper-2">
-            <image class="img" src="{{item}}" mode="scaleToFill"></image>
+            <image bindtap="previewImage" class="img" src="{{item}}" mode="aspectFill"></image>
           </view>
         </view>
         <view wx:if="{{grid === 4}}" class="grid-container grid-4">
           <view wx:for="{{urls}}" wx:key="index" class="image-wrapper-4">
-            <image class="img" src="{{item}}" mode="scaleToFill"></image>
+            <image bindtap="previewImage" class="img" src="{{item}}" mode="aspectFill"></image>
           </view>
         </view>
       </view>
@@ -26,13 +26,13 @@
       <!-- 3:4 Proportion -->
       <view wx:if="{{proportion === '3 : 4'}}" class="proportion-container">
         <view wx:if="{{grid === 1}}" class="grid-container grid-1">
-          <image src="{{urls[0]}}" mode="aspectFit"></image>
+          <image bindtap="previewImage" src="{{urls[0]}}" mode="aspectFit"></image>
         </view>
         <view wx:if="{{grid === 2}}" class="grid-container grid-2">
-          <image wx:for="{{urls}}" wx:key="index" src="{{item}}" mode="aspectFit"></image>
+          <image bindtap="previewImage" wx:for="{{urls}}" wx:key="index" src="{{item}}" mode="aspectFit"></image>
         </view>
         <view wx:if="{{grid === 4}}" class="grid-container grid-4">
-          <image wx:for="{{urls}}" wx:key="index" src="{{item}}" mode="aspectFit"></image>
+          <image bindtap="previewImage" wx:for="{{urls}}" wx:key="index" src="{{item}}" mode="aspectFit"></image>
         </view>
       </view>
     </view>

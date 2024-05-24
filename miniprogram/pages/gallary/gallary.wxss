@@ -64,7 +64,7 @@
 }
 
 .image-wrapper-2{
-  width: 48%;
+  width: 100%;
   border:solid 1px #ffffff;
 }
 

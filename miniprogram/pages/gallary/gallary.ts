@@ -9,8 +9,11 @@ Page({
     proportion: "1 : 1",
   },
   async onLoad(option) {
+    console.log("grid:", this.data.grid);
+    console.log("proportion:", this.data.proportion);
+
     this.setData({
-      grid: Number(option.grid || 1),
+      grid: Number(option.grid),
       proportion: option.proportion || "1 : 1",
       urls: []
     });
@@ -23,16 +26,16 @@ Page({
         env: 'prod-2gsuyczv841bd4e9'
       });
     }
-    this.callContainerAPI(option.story || "小猫和小狗在打架");
+    this.callContainerAPI(String(option.story), Number(option.grid), String(option.style));
   },
 
-  callContainerAPI: async function (shortStory: String) {
+  callContainerAPI: async function (shortStory: String, n: Number, style: String) {
     const apiKey = ApiKey;
     console.log('short story', shortStory);
     const postData = {
       "shortStory": shortStory,
-      "n": 1,
-      "style": "chinese"
+      "n": n,
+      "style": style
     };
     // 显示加载提示框
     wx.showLoading({
@@ -112,6 +115,15 @@ Page({
     wx.navigateTo({
       url: "/pages/storyInput/storyInput"
     });
+  },
+
+  previewImage: function(event: { currentTarget: { dataset: { url: any; }; }; }) {
+    const url = event.currentTarget.dataset.url; // 获取点击图片的 URL
+    wx.previewImage({
+      current: url, // 当前显示图片的http链接
+      urls: [url] // 需要预览的图片http链接列表，可以是多个
+    });
   }
+
 }
 )

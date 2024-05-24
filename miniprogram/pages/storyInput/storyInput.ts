@@ -31,6 +31,8 @@ Page({
 
   generateStory() {
     if (!this.data.inputValue || !this.data.selectedStyle) {
+      console.log("input:", this.data.inputValue);
+      console.log("style:", this.data.selectedStyle);
       wx.showToast({
         title: "Please input your content",
         icon: 'none',

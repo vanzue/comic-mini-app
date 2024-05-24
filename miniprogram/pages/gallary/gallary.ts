@@ -7,6 +7,7 @@ Page({
     urls: [] as String[],
     jobId: "",
     proportion: "1 : 1",
+    style:""
   },
   async onLoad(option) {
     console.log("grid:", this.data.grid);
@@ -15,7 +16,8 @@ Page({
     this.setData({
       grid: Number(option.grid),
       proportion: option.proportion || "1 : 1",
-      urls: []
+      urls: [],
+      style:String(option.style)
     });
     console.log('grid', this.data.grid);
     console.log('proportion', this.data.proportion);
@@ -113,7 +115,7 @@ Page({
 
   goBack: function () {
     wx.navigateTo({
-      url: "/pages/storyInput/storyInput"
+      url: `/pages/storyInput/storyInput?style=${this.data.style}`
     });
   },
 

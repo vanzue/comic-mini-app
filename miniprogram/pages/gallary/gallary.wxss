@@ -52,7 +52,6 @@
 .image-wrapper-4{
   width: 48%;
   border:solid 1px #ffffff;
-  padding-bottom: 50%;
 }
 
 .img{

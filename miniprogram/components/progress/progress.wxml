@@ -1,14 +1,11 @@
 <view class="pill-container">
   <view class="pill {{step >= 1 ?'active-1':''}}">
-    <text class="text first-pill">Start</text>
+    <text class="text first-pill">Style</text>
   </view>
   <view class="pill {{step >= 2 ?'active-2':''}}">
-    <text class="text">Style</text>
-  </view>
-  <view class="pill {{step >= 3 ?'active-3':''}}">
     <text class="text">Story</text>
   </view>
-  <view class="pill {{step >= 4 ?'active-4':''}}">
+  <view class="pill {{step >= 3 ?'active-3':''}}">
     <text class="text">Done</text>
   </view>
 </view>

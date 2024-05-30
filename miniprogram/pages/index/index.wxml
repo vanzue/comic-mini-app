@@ -1,14 +1,11 @@
 <view class="container">
   <view class="draw-area">
-    <view class="progress-container">
-      <progress step="1"></progress>
-    </view>
     <view class="say-hello">
       <view class="hello-text">
         Begin Your Comic!
       </view>
-      <view class="skip">
-        Skip, next
+      <view class="start">
+        Start!
       </view>
     </view>
     <scroll-view scroll-x="true" class="tab-container">

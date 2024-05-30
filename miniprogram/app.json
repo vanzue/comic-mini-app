@@ -1,10 +1,10 @@
 {
   "pages": [
-    "pages/moment/moment",
+    "pages/illusion/illusion",
     "pages/index/index",
+    "pages/moment/moment",
     "pages/gallary/gallary",
     "pages/storyInput/storyInput",
-    "pages/illusion/illusion",
     "pages/landing/landing",
     "pages/idea/idea",
     "pages/message/message",

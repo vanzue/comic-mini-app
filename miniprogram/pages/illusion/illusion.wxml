@@ -1,6 +1,6 @@
 <view class="container">
   <view class="progress-container">
-    <progress step="2"></progress>
+    <progress step="1"></progress>
   </view>
   <view class="illusion-title">
     Choose Your Style!

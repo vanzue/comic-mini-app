@@ -1,7 +1,7 @@
 <view class="container">
   <view class="draw-area">
     <view class="progress-container">
-      <progress step="4"></progress>
+      <progress step="3"></progress>
     </view>
 
     <view class="comic-container">

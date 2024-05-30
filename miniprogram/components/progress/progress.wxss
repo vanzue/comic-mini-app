@@ -8,7 +8,7 @@
 }
 
 .pill {
-  width: 30%;
+  width: 35%;
   height: 35rpx;
   border-radius: 12px;
   position: absolute;
@@ -23,41 +23,31 @@
 }
 
 .pill:nth-child(2) {
-  left: 23%;
+  left: 30%;
   z-index: 3;
 }
 
 .pill:nth-child(3) {
-  left: 46%;
+  left: 60%;
   z-index: 2;
 }
 
 .text {
   position: absolute;
-  right: 30%;
-}
-
-.pill:nth-child(4) {
-  left: 69%;
-  z-index: 1;
+  right: 40%;
 }
 
 .active-1 {
-  background-color: #FFD3AB;
-  color: #000000;
-}
-
-.active-2 {
   background-color: #F7BA83;
   color: #000000;
 }
 
-.active-3 {
+.active-2 {
   background-color: #EA9343;
   color: #000000;
 }
 
-.active-4 {
+.active-3 {
   background-color: #D06300;
   color: #000000;
 }

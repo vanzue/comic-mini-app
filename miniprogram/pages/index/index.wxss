@@ -2,6 +2,18 @@
   width: 80%;
 }
 
+.start{
+  width: 60px;
+  background-color: rgb(224, 211, 90);
+  border-radius: 15px;
+  height: 20px;
+  color: #000;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .search {
   height: 36px;
   width: 100%;
@@ -22,19 +34,19 @@
 }
 
 .say-hello {
+  margin-top: 5vh;
   font-size: medium;
   align-items: flex-end;
   color: #fff;
-  margin: 2.0vh;
   display: flex;
   flex-direction: row;
-  width: 90%;
+  width: 95%;
   justify-content: space-between;
+  margin-bottom: 1vh;
 }
 
 .hello-text {
   justify-content: start;
-  margin-left: 1vh;
 }
 
 .tab {

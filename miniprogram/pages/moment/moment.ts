@@ -1,66 +1,30 @@
-// pages/moment/moment.ts
+import { getSampleCards } from '../../utils/mock';
+import {Card} from '../../utils/types'
+
 Page({
-
-  /**
-   * Page initial data
-   */
   data: {
-
+    activeTag: "all",  // Default to the first tab
+    activeCards: [] as Card[]
   },
 
-  /**
-   * Lifecycle function--Called when page load
-   */
-  onLoad() {
-
+  onLoad: function () {
+    this.setData({
+      activeCards: getSampleCards(),
+    })
   },
 
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
-  onReady() {
-
+  switchTab: function (e: any) {
+    const tag = e.currentTarget.dataset.tag;
+    const sampleCards = getSampleCards();
+    this.setData({
+      activeTag: tag,
+      activeCards: sampleCards.filter(c => tag == "all" || c.classification.toLowerCase() == tag)
+    });
   },
 
-  /**
-   * Lifecycle function--Called when page show
-   */
-  onShow() {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page hide
-   */
-  onHide() {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page unload
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * Page event handler function--Called when user drop down
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * Called when page reach bottom
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * Called when user click on the top right corner to share
-   */
-  onShareAppMessage() {
-
+  selectStyle: function () {
+    wx.navigateTo({
+      url: "/pages/illusion/illusion"
+    });
   }
-})
+});

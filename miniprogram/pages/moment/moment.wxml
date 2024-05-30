@@ -1,2 +1,31 @@
-<!--pages/moment/moment.wxml-->
-<text>pages/moment/moment.wxml</text>
+<view class="container">
+  <view class="draw-area">
+    <view class="title-container hot">
+      <view class="title">Hot</view>
+      <view class="icon">
+        <image class="icon" src="/assets/Search bar.png" mode="aspectFit"></image>
+      </view>
+    </view>
+    <view class="hot-container">
+      <view class = "hot-content">
+        <view class="hot-image image1"></view>
+      </view>
+      <view class = "hot-content">
+        <view class="hot-image image2"></view>
+      </view>
+    </view>
+    <scroll-view scroll-x="true" class="tab-container">
+      <view bindtap="switchTab" data-tag="all" class="tab {{activeTag == 'all' ? 'active' : ''}}">All</view>
+      <view bindtap="switchTab" data-tag="personal" class="tab {{activeTag == 'personal' ? 'active' : ''}}">Personal</view>
+      <view bindtap="switchTab" data-tag="social" class="tab {{activeTag == 'social' ? 'active' : ''}}">Social</view>
+      <view bindtap="switchTab" data-tag="govent" class="tab {{activeTag == 'govent' ? 'active' : ''}}">GovEnt</view>
+      <view bindtap="switchTab" data-tag="business" class="tab {{activeTag == 'business' ? 'active' : ''}}">Business</view>
+    </scroll-view>
+    <view class="card-container">
+      <view wx:for="{{activeCards}}" wx:key="title" class="card">
+        <card bind:tap="selectStyle" data-style="{{item.classification}}" image="{{item.image}}" title="{{item.title}}" subtitle="{{item.subtitle}}"></card>
+      </view>
+    </view>
+  </view>
+  <navigation />
+</view>

@@ -7,11 +7,67 @@
       </view>
     </view>
     <view class="hot-container">
-      <view class = "hot-content">
-        <view class="hot-image image1"></view>
+      <view class="hot-content hot-first">
+        <view class="hot-image image1">
+          <view class="img-title">
+            <view class="heart-container">
+              <image class="heart" src="/assets/heart.png" mode="scaleToFill"></image>
+            </view>
+            <view class="pill">
+              <view class="rank">TOP1</view>
+              <image class="fire" src="/assets/emoji/emoji _fire_.png" mode="scaleToFill"></image>
+            </view>
+          </view>
+        </view>
+        <view class="hot-description">
+          <view class="hot-title">A Dreamer's Odyssey</view>
+          <view class="hot-body">
+            <view class="author">
+              <image class="action-icon" src="/assets/user_head1.png" mode="scaleToFill"></image>
+              Alexia
+            </view>
+            <view class="action-list">
+              <image class="action-icon" src="/assets/emoji/emoji _smiling face with heart-eyes_.png" mode="scaleToFill"></image>
+              <image class="action-icon" src="/assets/emoji/emoji _thumbs up_.png" mode="scaleToFill"></image>
+              <image class="action-icon" src="/assets/emoji/emoji _glowing star_.png" mode="scaleToFill"></image>
+            </view>
+          </view>
+        </view>
       </view>
-      <view class = "hot-content">
-        <view class="hot-image image2"></view>
+      <view class="hot-content hot-second">
+        <view class="hot-image image2">
+          <view class="img-title">
+            <view class="heart-container">
+              <image class="heart" src="/assets/heart.png" mode="scaleToFill"></image>
+            </view>
+            <view class="pill">
+              <view class="rank">TOP2</view>
+              <image class="fire" src="/assets/emoji/emoji _fire_.png" mode="scaleToFill"></image>
+            </view>
+          </view>
+        </view>
+        <view class="hot-description"></view>
+        <view class="hot-title">Zhang Qian opens the West</view>
+        <view class="hot-body">
+          <view>
+            <view class="author">
+              <image class="action-icon" src="/assets/user_head2.png" mode="scaleToFill"></image>
+              Mimosas
+            </view>
+          </view>
+          <view class="action-list">
+            <image class="action-icon" src="/assets/emoji/emoji _smiling face with heart-eyes_.png" mode="scaleToFill"></image>
+            <image class="action-icon" src="/assets/emoji/emoji _thumbs up_.png" mode="scaleToFill"></image>
+            <image class="action-icon" src="/assets/emoji/emoji _glowing star_.png" mode="scaleToFill"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="title-container Explore">
+      <view class="title">Explore</view>
+      <view class="icon">
+        <image class="icon" src="/assets/Vector.png" mode="aspectFit"></image>
       </view>
     </view>
     <scroll-view scroll-x="true" class="tab-container">
@@ -19,10 +75,27 @@
       <view bindtap="switchTab" data-tag="personal" class="tab {{activeTag == 'personal' ? 'active' : ''}}">Personal</view>
       <view bindtap="switchTab" data-tag="social" class="tab {{activeTag == 'social' ? 'active' : ''}}">Social</view>
       <view bindtap="switchTab" data-tag="govent" class="tab {{activeTag == 'govent' ? 'active' : ''}}">GovEnt</view>
-      <view bindtap="switchTab" data-tag="business" class="tab {{activeTag == 'business' ? 'active' : ''}}">Business</view>
     </scroll-view>
     <view class="card-container">
       <view wx:for="{{activeCards}}" wx:key="title" class="card">
+        <card bind:tap="selectStyle" data-style="{{item.classification}}" image="{{item.image}}" title="{{item.title}}" subtitle="{{item.subtitle}}"></card>
+      </view>
+    </view>
+
+    <view class="title-container Explore">
+      <view class="title">Style</view>
+      <view class="icon">
+        <image class="icon" src="/assets/Vector.png" mode="aspectFit"></image>
+      </view>
+    </view>
+    <scroll-view scroll-x="true" class="tab-container">
+      <view bindtap="switchStyle" data-style="all" class="tab {{activeStyle == 'all' ? 'active' : ''}}">All</view>
+      <view bindtap="switchStyle" data-style="illustration" class="tab {{activeStyle == 'illustration' ? 'active' : ''}}">Illustration</view>
+      <view bindtap="switchStyle" data-style="realistic" class="tab {{activeStyle == 'realistic' ? 'active' : ''}}">Realistic</view>
+      <view bindtap="switchStyle" data-style="manga" class="tab {{activeStyle == 'manga' ? 'active' : ''}}">Manga</view>
+    </scroll-view>
+    <view class="card-container">
+      <view wx:for="{{activeStyleCards}}" wx:key="title" class="card">
         <card bind:tap="selectStyle" data-style="{{item.classification}}" image="{{item.image}}" title="{{item.title}}" subtitle="{{item.subtitle}}"></card>
       </view>
     </view>

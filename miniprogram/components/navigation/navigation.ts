@@ -7,12 +7,33 @@ Component({
     someData: 'Hello, World!'
   },
   methods: {
-    handleTap: function (e: { currentTarget: { dataset: { to: any; }; }; }) {
-      console.log("navigate to ", e.currentTarget.dataset.to);
-      var page = e.currentTarget.dataset.to;
+    gotoMoment: function () {
       wx.navigateTo({
-        url: `/pages/${page}/${page}`
+        url: "/pages/moment/moment"
       })
-    }
+    },
+    gotoIdea: function () {
+      // wx.navigateTo({
+      //   url: "/pages/idea/idea"
+      // })
+      console.log("goto idea")
+    },
+    gotoProfile: function () {
+      // wx.navigateTo({
+      //   url: "/pages/me/me"
+      // })
+      console.log("goto profile")
+    },
+    gotoMessage: function () {
+      // wx.navigateTo({
+      //   url: "/pages/message/message"
+      // })
+      console.log("goto message")
+    },
+    gotoCreate: function () {
+      wx.navigateTo({
+        url: "/pages/index/index"
+      })
+    },
   }
 });

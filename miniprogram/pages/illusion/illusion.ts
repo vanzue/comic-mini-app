@@ -12,7 +12,7 @@ Page({
   },
 
   onSwiperChange: function (e: { detail: { current: any; }; }) {
-    const styleList = [
+    const styleList = [ 
       {
         style: "american",
         name: "American Comic"

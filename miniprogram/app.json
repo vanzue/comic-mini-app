@@ -1,14 +1,14 @@
 {
   "pages": [
-    "pages/illusion/illusion",
-    "pages/index/index",
-    "pages/moment/moment",
+    "pages/me/me",
     "pages/gallary/gallary",
+    "pages/index/index",
+    "pages/illusion/illusion",
+    "pages/moment/moment",
     "pages/storyInput/storyInput",
     "pages/landing/landing",
     "pages/idea/idea",
-    "pages/message/message",
-    "pages/me/me"
+    "pages/message/message"
   ],
   "window": {
     "navigationStyle": "custom"

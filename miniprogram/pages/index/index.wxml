@@ -4,7 +4,7 @@
       <view class="hello-text">
         Begin Your Comic!
       </view>
-      <view class="start">
+      <view class="start" bind:tap="selectStyle">
         Start!
       </view>
     </view>

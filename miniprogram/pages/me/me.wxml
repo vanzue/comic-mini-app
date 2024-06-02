@@ -1,2 +1,20 @@
-<!--pages/me/me.wxml-->
-<text>pages/me/me.wxml</text>
+<view class="container">
+  <view class="draw-area">
+    <text class="title">My Comic Collection</text>
+    <view class="comics-container">
+      <block wx:for="{{comics}}" wx:key="id">
+        <view class="comic-item-container">
+          <view class="comic-item">
+            <view class="comic-image-container">
+              <image class="image" src="{{item.image}}" mode="aspectFit" />
+            </view>
+            <view class="comic-footer"></view>
+          </view>
+          <view class="collection-title">{{item.title}}
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <navigation />
+</view>

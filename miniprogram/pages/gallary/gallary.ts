@@ -7,7 +7,8 @@ Page({
     urls: [] as String[],
     jobId: "",
     proportion: "1 : 1",
-    style:""
+    style: "",
+    loading: true
   },
   async onLoad(option) {
     console.log("grid:", this.data.grid);
@@ -17,7 +18,7 @@ Page({
       grid: Number(option.grid),
       proportion: option.proportion || "1 : 1",
       urls: [],
-      style:String(option.style)
+      style: String(option.style)
     });
     console.log('grid', this.data.grid);
     console.log('proportion', this.data.proportion);
@@ -39,10 +40,6 @@ Page({
       "n": n,
       "style": style
     };
-    // 显示加载提示框
-    wx.showLoading({
-      title: 'Loading...',
-    });
 
     try {
       const result = await wx.cloud.callContainer({
@@ -94,12 +91,14 @@ Page({
           const urlList = JSON.parse(jobData.Result);
           console.log(urlList);
           this.setData({
-            urls: urlList
+            urls: urlList,
+            loading: false
           });
-          wx.hideLoading();
         } else if (jobData.JobStatus === 'Failed') {
           wx.showToast({ title: "Job failed, please try again", icon: 'none', duration: 2000 });
-          wx.hideLoading();
+          this.setData({
+            loading: false
+          });
         } else {
           // If the status is neither 'Success' nor 'Failed', keep polling
           setTimeout(checkStatus, 5000); // Recheck every 5 seconds
@@ -119,7 +118,7 @@ Page({
     });
   },
 
-  previewImage: function(event: { currentTarget: { dataset: { url: any; }; }; }) {
+  previewImage: function (event: { currentTarget: { dataset: { url: any; }; }; }) {
     const url = event.currentTarget.dataset.url; // 获取点击图片的 URL
     wx.previewImage({
       current: url, // 当前显示图片的http链接

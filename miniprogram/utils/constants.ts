@@ -16,6 +16,8 @@ export const Hot2Sample: String = "https://comicstorage.blob.core.windows.net/co
 
 export const ModernSample: String = "https://comicstorage.blob.core.windows.net/comics/modern style 1-min.png";
 
+export const LoadingVideo: String = "https://comicstorage.blob.core.windows.net/comics/loading.mp4";
+
 export const AvailableStyles = ["american", "chinese", "japan"];
 
 // export const ComicCreateApiEndpoint = "https://comic-web-app.azurewebsites.net/generate/comics"

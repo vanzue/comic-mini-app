@@ -16,7 +16,7 @@
     <view class="comic-container">
       <view wx:if="{{proportion === '1 : 1'}}" class="proportion-container">
         <view class="grid-container grid-1">
-          <view class="loading-video-container">
+          <view wx:if="{{urls.length === 0}}" class="loading-video-container">
             <video src="https://comicstorage.blob.core.windows.net/comics/loading.mp4" class="video" controls="false" autoplay="true" loop="true" muted="true" object-fit="fill" />
           </view>
           <view wx:for="{{urls}}" wx:key="index" class="image-wrapper-1">

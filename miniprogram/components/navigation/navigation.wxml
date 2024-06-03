@@ -1,25 +1,35 @@
 <view class="navigation-container">
   <view class="nav-item" bind:tap="gotoMoment">
-    <image class="nav-icon" src="/assets/bottom/bottom_moment.png" mode="aspectFit"></image>
+    <view class="icon-container {{activeTab=='moment'?'active':''}}">
+      <image class="nav-icon" src="/assets/bottom/bottom_moment.png" mode="aspectFit"></image>
+    </view>
     <view class="nav-text">Moment</view>
   </view>
 
   <view class="nav-item" bind:tap="gotoIdea">
-    <image class="nav-icon" src="/assets/bottom/bottom_idea.png" mode="aspectFit"></image>
+    <view class="icon-container {{activeTab=='idea'?'active':''}}">
+      <image class="nav-icon" src="/assets/bottom/bottom_idea.png" mode="aspectFit"></image>
+    </view>
     <view class="nav-text">Idea</view>
   </view>
 
   <view class="nav-item profile" bind:tap="gotoCreate">
-    <image class="profile-icon" src="/assets/bottom/bottom_center.png" mode="aspectFit" />
-    <view class="nav-text">Moment</view>
+    <view class="profile-icon icon-container {{activeTab=='create'?'active':''}}">
+      <image class="nav-icon-center" src="/assets/bottom/bottom_center.png" mode="aspectFit" />
+    </view>
+    <view class="nav-text"></view>
   </view>
 
-  <view class="nav-item" bind:tap="gotoMessage">
-    <image class="nav-icon" src="/assets/bottom/bottom_message.png" mode="aspectFit"></image>
+  <view class="nav-item {{activeTab=='message'?'active':''}}" bind:tap="gotoMessage">
+    <view class="icon-container {{activeTab=='message'?'active':''}}">
+      <image class="nav-icon" src="/assets/bottom/bottom_message.png" mode="aspectFit"></image>
+    </view>
     <view class="nav-text">Message</view>
   </view>
   <view class="nav-item" bind:tap="gotoProfile">
-    <image class="nav-icon" src="/assets/bottom/bottom_me.png" mode="aspectFit"></image>
+    <view class="icon-container {{activeTab=='me'?'active':''}}">
+      <image class="nav-icon" src="/assets/bottom/bottom_me.png" mode="aspectFit"></image>
+    </view>
     <view class="nav-text">Me</view>
   </view>
 </view>

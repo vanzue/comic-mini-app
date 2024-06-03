@@ -1,6 +1,9 @@
 Component({
   properties: {
-
+    activeTab: {
+      type: String,
+      value: '',
+    }
   },
   data: {
     // 定义组件的内部数据
@@ -19,10 +22,9 @@ Component({
       console.log("goto idea")
     },
     gotoProfile: function () {
-      // wx.navigateTo({
-      //   url: "/pages/me/me"
-      // })
-      console.log("goto profile")
+      wx.navigateTo({
+        url: "/pages/me/me"
+      })
     },
     gotoMessage: function () {
       // wx.navigateTo({

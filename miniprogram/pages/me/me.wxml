@@ -16,5 +16,5 @@
       </block>
     </view>
   </view>
-  <navigation />
+  <navigation activeTab='me'/>
 </view>

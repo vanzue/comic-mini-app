@@ -100,5 +100,5 @@
       </view>
     </view>
   </view>
-  <navigation />
+  <navigation activeTab="moment"/>
 </view>

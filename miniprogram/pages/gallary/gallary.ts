@@ -8,7 +8,8 @@ Page({
     jobId: "",
     proportion: "1 : 1",
     style: "",
-    loading: true
+    loading: true,
+    gameStatus: 0
   },
   async onLoad(option) {
     console.log("grid:", this.data.grid);
@@ -40,6 +41,7 @@ Page({
       "n": n,
       "style": style
     };
+    console.log('short story', postData);
 
     try {
       const result = await wx.cloud.callContainer({
@@ -118,6 +120,18 @@ Page({
     });
   },
 
+  selectCorrect: function () {
+    this.setData({
+      gameStatus: 1
+    });
+  },
+
+  selectWrong: function () {
+    this.setData({
+      gameStatus: 0
+    });
+  },
+
   previewImage: function (event: { currentTarget: { dataset: { url: any; }; }; }) {
     const url = event.currentTarget.dataset.url; // 获取点击图片的 URL
     wx.previewImage({
@@ -125,6 +139,5 @@ Page({
       urls: [url] // 需要预览的图片http链接列表，可以是多个
     });
   }
-
 }
 )

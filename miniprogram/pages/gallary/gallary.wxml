@@ -9,7 +9,9 @@
         {{loading?"Waiting...":"All finished!"}}
       </view>
       <view class="status-text">
-        {{loading?"Take a stab at guessing!":"Come admire your masterpiece!"}}
+        <view wx:if="{{!loading}}">Come admire your masterpiece!</view>
+        <view class="text-correct" wx:if="{{loading && gameStatus==1}}">Great!</view>
+        <view wx:if="{{loading && gameStatus==0}}">Pictionary time while we wait!</view>
       </view>
     </view>
 
@@ -33,9 +35,13 @@
       </view>
     </view>
 
-    <view class="button-group">
-      <confirmButton text="Back" bind:back="goBack" eventName="back" />
-      <confirmButton text="OK" bind:ok="done" eventName="ok" />
+    <view wx:if="{{urls.length === 0}}" class="button-group">
+      <view bind:tap="selectCorrect" class="mini-game-button {{gameStatus==1?'button-correct':''}}">
+        Accordion
+      </view>
+      <view bind:tap="selectWrong" class="mini-game-button">
+        Harp
+      </view>
     </view>
   </view>
   <navigation />

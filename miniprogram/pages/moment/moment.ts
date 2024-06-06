@@ -1,7 +1,7 @@
 import { Card } from '../../utils/types'
 
 const SampleCards = [
-  { title: "Work Diary", subtitle: "RED", image: "https://comicstorage.blob.core.windows.net/comics/landing-1.png", classification: "personal" },
+  { title: "Work Diary", subtitle: "RED", image: "https://comicstorage.blob.core.windows.net/comics/landing-1-4grid.png", classification: "personal" },
   { title: "Love Story", subtitle: "RED", image: "https://comicstorage.blob.core.windows.net/comics/landing2.png", classification: "social" },
   { title: "Therapeutic Series", subtitle: "RED", image: "https://comicstorage.blob.core.windows.net/comics/landing-3.png", classification: "govent" },
 ]

@@ -18,7 +18,7 @@ Page({
     this.setData({
       grid: Number(option.grid),
       proportion: option.proportion || "1 : 1",
-      urls: [],
+      urls: [""],
       style: String(option.style)
     });
     console.log('grid', this.data.grid);

@@ -8,7 +8,7 @@
 
   <swiper class="swiper-container" indicator-dots circular previous-margin="100rpx" next-margin="100rpx" bindchange="onSwiperChange">
     <swiper-item class="swiper-item">
-      <image src="https://comicstorage.blob.core.windows.net/comics/american-style.png" class="swiper-image  {{reviewingStyle=='american'?'active':''}}" mode="scaleToFill" />
+      <image src="https://comicstorage.blob.core.windows.net/comics/american-style-min.png" class="swiper-image  {{reviewingStyle=='american'?'active':''}}" mode="scaleToFill" />
     </swiper-item>
     <swiper-item class="swiper-item">
       <image src="https://comicstorage.blob.core.windows.net/comics/korean-min.png" class="swiper-image  {{reviewingStyle=='korean'?'active':''}}" mode="scaleToFill" />

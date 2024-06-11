@@ -2,7 +2,7 @@
   width: 80%;
 }
 
-.start{
+.start {
   width: 60px;
   background-color: rgb(224, 211, 90);
   border-radius: 15px;
@@ -92,4 +92,14 @@
 .card {
   width: 32%;
   height: 25vh;
+}
+
+.appPreview {
+  width: 100%;
+  height: 100vh;
+}
+
+.preview-image{
+  width: 100%;
+  height: 100%;
 }

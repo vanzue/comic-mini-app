@@ -1,4 +1,4 @@
-<view class="container">
+<view wx:if="{{appPreview===0}}" class="container">
   <view class="draw-area">
     <view class="say-hello">
       <view class="hello-text">
@@ -17,9 +17,16 @@
     </scroll-view>
     <view class="card-container">
       <view wx:for="{{activeCards}}" wx:key="title" class="card">
-          <card bind:tap="selectStyle" data-style="{{item.classification}}" image="{{item.image}}" title="{{item.title}}" subtitle="{{item.subtitle}}"></card>
+        <card bind:tap="selectStyle" data-style="{{item.title}}" image="{{item.image}}" title="{{item.title}}" subtitle="{{item.subtitle}}"></card>
       </view>
     </view>
   </view>
-  <navigation activeTab="idea"/>
+  <navigation activeTab="idea" />
+</view>
+
+<view wx:if="{{appPreview!=0}}">
+  <view class="appPreview">
+    <image bind:tap="toggleStyle" class="preview-image" src="{{previewSrc}}" mode="aspectFit"></image>
+  </view>
+  <navigation activeTab="idea" />
 </view>

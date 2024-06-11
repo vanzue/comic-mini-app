@@ -11,7 +11,7 @@
       <image src="https://comicstorage.blob.core.windows.net/comics/american-style.png" class="swiper-image  {{reviewingStyle=='american'?'active':''}}" mode="scaleToFill" />
     </swiper-item>
     <swiper-item class="swiper-item">
-      <image src="https://comicstorage.blob.core.windows.net/comics/korean-style.png" class="swiper-image  {{reviewingStyle=='korean'?'active':''}}" mode="scaleToFill" />
+      <image src="https://comicstorage.blob.core.windows.net/comics/korean-min.png" class="swiper-image  {{reviewingStyle=='korean'?'active':''}}" mode="scaleToFill" />
     </swiper-item>
     <swiper-item class="swiper-item">
       <image src="https://comicstorage.blob.core.windows.net/comics/chinese.png" class="swiper-image {{reviewingStyle=='chinese'?'active':''}}" mode="scaleToFill" />

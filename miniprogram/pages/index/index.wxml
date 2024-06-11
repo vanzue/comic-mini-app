@@ -21,5 +21,5 @@
       </view>
     </view>
   </view>
-  <navigation activeTab="create"/>
+  <navigation activeTab="idea"/>
 </view>

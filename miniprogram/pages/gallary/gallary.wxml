@@ -44,5 +44,5 @@
       </view>
     </view>
   </view>
-  <navigation />
+  <navigation activeTab="illusion"/>
 </view>

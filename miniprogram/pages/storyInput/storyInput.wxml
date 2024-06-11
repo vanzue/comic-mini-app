@@ -62,5 +62,5 @@
       <confirmButton text="Generate" bind:generate="generateStory" eventName="generate" />
     </view>
   </view>
-  <navigation />
+  <navigation activeTab="illusion"/>
 </view>

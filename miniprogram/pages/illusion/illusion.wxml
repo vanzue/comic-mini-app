@@ -26,4 +26,6 @@
     <confirmButton text="Back" bind:back = "goBack" eventName="back" />
     <confirmButton text="OK" bind:ok = "selectStyle" eventName="ok" />
   </view>
+
+  <navigation activeTab="illusion"/>
 </view>

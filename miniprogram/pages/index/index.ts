@@ -52,10 +52,10 @@ Page({
     const bonus = (currentStyle % 2 == 0 ? -1 : 1);
 
     const imageList = [
-      "https://comicstorage.blob.core.windows.net/comics/tt-detail.png",
       "https://comicstorage.blob.core.windows.net/comics/tt-effect.png",
-      "https://comicstorage.blob.core.windows.net/comics/red-detail.png",
-      "https://comicstorage.blob.core.windows.net/comics/red-effect.png"
+      "https://comicstorage.blob.core.windows.net/comics/tt-detail.png",
+      "https://comicstorage.blob.core.windows.net/comics/red-effect.png",
+      "https://comicstorage.blob.core.windows.net/comics/red-detail.png"
     ];
 
     const currentPreview = currentStyle + bonus;

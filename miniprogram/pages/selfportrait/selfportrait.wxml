@@ -1,0 +1,12 @@
+<view class="container">
+  <view class="draw-area">
+    <view class="choose-subject-text">Choose your comic image</view>
+  </view>
+
+  <view class="choose-subject-pill">
+    <view class="subject-pill">A Pet</view>
+    <view class="subject-pill">A Person</view>
+    <view class="subject-pill">A Product</view>
+  </view>
+  <navigation activeTab="illusion" />
+</view>

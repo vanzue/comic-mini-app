@@ -1,0 +1,33 @@
+.choose-subject-text{
+  margin-top: 6vh;
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.choose-subject-pill{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.subject-pill{
+  background: linear-gradient(90deg, rgba(154, 85, 106, 0.6) 0%, rgba(178, 57, 151, 0.6) 50.92%, rgba(185, 58, 96, 0.6) 100%);
+  color: #ffffff;
+  border-radius: 50rpx;
+  width: 70%;
+  height: 8vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2vh;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.active {
+  border: 2px;
+  border-color: #ffffff;
+}

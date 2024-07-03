@@ -1,8 +1,46 @@
+import { LogonResponse } from "./utils/types";
+
 // app.ts
-App<IAppOption>({
-  globalData: {
-    selectedStyle: '' // 初始化为空字符串
-  },
+App({
   onLaunch() {
+    const userProfile = wx.getStorageSync('userProfile') as LogonResponse;
+    if (!userProfile || !userProfile.session_token) {
+      this.login();
+    }
   },
-})
+  login() {
+    wx.login({
+      success: res => {
+        if (res.code) {
+          wx.request({
+            url: 'http://localhost:54112/login',
+            method: 'POST',
+            data: {
+              code: res.code
+            },
+            success: res => {
+              const data = res.data as LogonResponse;
+              wx.setStorageSync('userProfile', data);
+              
+              if(!data.user_description){
+                wx.navigateTo({
+                  url: "/pages/selfportrait/selfportrait"
+                })
+              }
+            },
+            fail: err => {
+              wx.showToast({
+                title:"failed to logon"
+              });
+            }
+          });
+        } else {
+          console.log('Failed to logon' + res.errMsg);
+        }
+      }
+    });
+  },
+  globalData: {
+    userInfo: null
+  }
+});

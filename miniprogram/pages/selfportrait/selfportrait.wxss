@@ -13,6 +13,13 @@
   justify-content: center;
 }
 
+.scene-container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .subject-pill{
   background: linear-gradient(90deg, rgba(154, 85, 106, 0.6) 0%, rgba(178, 57, 151, 0.6) 50.92%, rgba(185, 58, 96, 0.6) 100%);
   color: #ffffff;
@@ -22,12 +29,34 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 2vh;
+  margin-top: 8vh;
   font-weight: 700;
   font-size: 18px;
 }
 
 .active {
-  border: 2px;
-  border-color: #ffffff;
+  border:1px solid #ffffff;
+}
+
+.button-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+
+.button{
+  margin-top: 8vh;
+  background: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  width: 95px;
+  height:36px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  border: 1px solid #ffffff;
 }

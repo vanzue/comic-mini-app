@@ -1,12 +1,30 @@
 <view class="container">
   <view class="draw-area">
-    <view class="choose-subject-text">Choose your comic image</view>
-  </view>
 
-  <view class="choose-subject-pill">
-    <view class="subject-pill">A Pet</view>
-    <view class="subject-pill">A Person</view>
-    <view class="subject-pill">A Product</view>
+    <view class="scene-container" wx:if="{{step=='select-subject---000'}}">
+      <view class="choose-subject-text">Choose your comic image</view>
+      <view class="choose-subject-pill">
+        <view class="subject-pill {{selectType == 'pet' ? 'active' : ''}}" bind:tap="handleSelect" data-type="pet">A Pet</view>
+        <view class="subject-pill {{selectType == 'person' ? 'active' : ''}}" bind:tap="handleSelect" data-type="person">A Person</view>
+        <view class="subject-pill {{selectType == 'product' ? 'active' : ''}}" bind:tap="handleSelect" data-type="product">A Product</view>
+      </view>
+      <view class="button-container">
+        <view class="button" bind:tap="handleNext">Next</view>
+      </view>
+    </view>
+
+    <!-- <view class="scene-container" wx:if="{{step=='upload-photo'}}"> -->
+    <view class="scene-container">
+      <view class="choose-subject-text">Upload your frontal photo</view>
+    </view>
+
+    <view class="scene-container" wx:if="{{step=='choose-style'}}">
+      <view class="box">
+        <image src="/images/icon.png" class="icon" mode="aspectFit" />
+      </view>
+      <button class="next-button">Next</button>
+    </view>
+
   </view>
   <navigation activeTab="illusion" />
 </view>

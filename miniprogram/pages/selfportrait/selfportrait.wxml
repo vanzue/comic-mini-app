@@ -1,7 +1,6 @@
 <view class="container">
   <view class="draw-area">
-
-    <view class="scene-container" wx:if="{{step=='select-subject---000'}}">
+    <view class="scene-container" wx:if="{{step=='select-subject'}}">
       <view class="choose-subject-text">Choose your comic image</view>
       <view class="choose-subject-pill">
         <view class="subject-pill {{selectType == 'pet' ? 'active' : ''}}" bind:tap="handleSelect" data-type="pet">A Pet</view>
@@ -13,18 +12,27 @@
       </view>
     </view>
 
-    <!-- <view class="scene-container" wx:if="{{step=='upload-photo'}}"> -->
-    <view class="scene-container">
+    <view class="scene-container" wx:if="{{step=='upload-photo'}}">
       <view class="choose-subject-text">Upload your frontal photo</view>
+      <view class="box" bind:tap="handleClickUpload">
+        <image wx:if="{{!photourl}}" src="/assets/upload-photo.svg" class="icon" mode="aspectFit" />
+        <image wx:if="{{!!photourl}}" src="/assets/me.jpg" class="photo" mode="aspectFill" />
+      </view>
+      <view class="button-container">
+        <view class="button" bind:tap="handleUploadDone">Next</view>
+      </view>
     </view>
 
     <view class="scene-container" wx:if="{{step=='choose-style'}}">
-      <view class="box">
-        <image src="/images/icon.png" class="icon" mode="aspectFit" />
+      <view class="choose-subject-text">Upload your frontal photo</view>
+      <view class="box" bind:tap="handleClickUpload">
+        <image wx:if="{{!photourl}}" src="/assets/upload-photo.svg" class="icon" mode="aspectFit" />
+        <image wx:if="{{!!photourl}}" src="{{photourl}}" class="photo" mode="aspectFill" />
       </view>
-      <button class="next-button">Next</button>
+      <view class="button-container">
+        <view class="button" bind:tap="handleUploadDone">Next</view>
+      </view>
     </view>
-
   </view>
   <navigation activeTab="illusion" />
 </view>

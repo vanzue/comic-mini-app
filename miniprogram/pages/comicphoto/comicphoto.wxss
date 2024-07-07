@@ -1,0 +1,93 @@
+.choose-subject-text {
+  margin-top: 6vh;
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+
+.button-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  width: 100%;
+  position: fixed;
+  bottom: 20vh;
+}
+
+.button {
+  margin-top: 8vh;
+  background: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  width: 95px;
+  height: 36px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border-left-color: #09f;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.determine-box {
+  background: linear-gradient(180deg, rgba(218, 153, 153, 0.9), rgba(153, 62, 117, 0.9) 47.1%, rgba(144, 80, 107, 0.9));
+  border-radius: 34px;
+  width: 80%;
+  height: 20vh;
+  flex-shrink: 0;
+  position: fixed;
+  bottom: 50vh;
+  border: solid #ffffff 1rpx;
+}
+
+.confirm-text {
+  margin-top: 4vh;
+  font-size: 14px;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+}
+
+.confirm-button-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.confirm-button{
+  margin-top: 5vh;
+  height: 3vh;
+  width: 20%;
+  border: solid white 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  font-size: 11px;
+  color: #ffffff;
+}
+
+.refuse{
+ background: #BBBFBB;
+}
+
+.confirm{
+  background: linear-gradient(181deg, #5ACD7A 0.64%, #0E5B44 118.69%);
+}

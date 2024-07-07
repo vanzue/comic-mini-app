@@ -12,3 +12,11 @@ export interface LogonResponse {
   seed: string;
   style: string;
 }
+
+export interface ComicPhoto{
+  compressed_url: string,
+  url: string,
+  character: string,
+  style: string,
+  seed: string,
+}

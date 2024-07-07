@@ -1,0 +1,20 @@
+<view class="container" style="background: url('{{comicurl}}') no-repeat center center; background-size: cover;">
+  <view class="draw-area">
+    <view class="choose-subject-text">Choose your face</view>
+  </view>
+
+  <view class="determine-box">
+    <view class="confirm-text">Create a comic with this character?</view>
+    <view class="confirm-button-group">
+      <view class="confirm-button refuse">No</view>
+      <view class="confirm-button confirm">Yes</view>
+    </view>
+  </view>
+
+  <view class="button-container">
+    <view wx:if="{{!regenerating}}" class="button" bind:tap="regenerate">Regenerate</view>
+    <view wx:if="{{regenerating}}" class="spinner">Spinning</view>
+    <view class="button" bind:tap="determine">OK</view>
+  </view>
+  <navigation activeTab="illusion" />
+</view>

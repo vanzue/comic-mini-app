@@ -16,21 +16,11 @@
       <view class="choose-subject-text">Upload your frontal photo</view>
       <view class="box" bind:tap="handleClickUpload">
         <image wx:if="{{!photourl}}" src="/assets/upload-photo.svg" class="icon" mode="aspectFit" />
-        <image wx:if="{{!!photourl}}" src="/assets/me.jpg" class="photo" mode="aspectFill" />
-      </view>
-      <view class="button-container">
-        <view class="button" bind:tap="handleUploadDone">Next</view>
-      </view>
-    </view>
-
-    <view class="scene-container" wx:if="{{step=='choose-style'}}">
-      <view class="choose-subject-text">Upload your frontal photo</view>
-      <view class="box" bind:tap="handleClickUpload">
-        <image wx:if="{{!photourl}}" src="/assets/upload-photo.svg" class="icon" mode="aspectFit" />
         <image wx:if="{{!!photourl}}" src="{{photourl}}" class="photo" mode="aspectFill" />
       </view>
       <view class="button-container">
-        <view class="button" bind:tap="handleUploadDone">Next</view>
+        <view wx:if="{{!requestingComic}}" class="button" bind:tap="handleUploadDone">Next</view>
+        <view wx:if="{{requestingComic}}" class="spinner"></view>
       </view>
     </view>
   </view>

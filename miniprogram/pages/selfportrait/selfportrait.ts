@@ -1,11 +1,14 @@
+import { ComicPhoto } from "../../utils/types";
+
 // page.ts
 Page({
   data: {
     selectType: "",
-    // [select-subject, upload-photo, choose-style]
     step: "select-subject",
     photourl: '',
-    comicurl:''
+    photoCloudUrl: '',
+    uploadingPhoto: true,
+    requestingComic: false
   },
 
   onLoad(option) {
@@ -40,23 +43,80 @@ Page({
   },
 
   handleUploadDone() {
+    if (this.data.requestingComic || this.data.uploadingPhoto) {
+      return;
+    }
+
     this.setData({
-      step: 'choose-style'
+      requestingComic: true
+    });
+
+    wx.request({
+      url: 'http://10.32.83.58:5000/image/new/comic',
+      method: 'POST',
+      data: {
+        "session_token": "12345",
+        "photo_url": this.data.photoCloudUrl
+      },
+      success: (res) => {
+        this.setData({
+          regenerating: false
+        });
+        if (res.statusCode === 200) {
+          const response = res.data as ComicPhoto;
+          console.log("comic response:", response);
+          wx.navigateTo({
+            url: `/pages/comicphoto/comicphoto?comicurl=${encodeURIComponent(response.url)}&character=${response.character}&seed=${response.seed}`
+          })
+        } else {
+          console.error('request failed:', res);
+        }
+      },
+      fail: (err) => {
+        console.error('something error happened:', err);
+        this.setData({
+          regenerating: false
+        });
+      }
     });
   },
 
   handleClickUpload() {
     wx.chooseMedia({
-      count: 1,  // 一次选择一张照片
-      sizeType: ['compressed'],  // 可以指定是原图还是压缩图
-      sourceType: ['album', 'camera'],  // 可以指定来源是相册还是相机
+      count: 1,
+      sizeType: ['compressed'],
+      sourceType: ['album', 'camera'],
       success: (res) => {
-        const tempFile = res.tempFiles;
-        console.log("photourl:", tempFile[0].tempFilePath);
-        this.setData({
-          photourl: tempFile[0].tempFilePath,
-        });
+        const tempFilePath = res.tempFiles[0].tempFilePath;
+        wx.getFileSystemManager().readFile({
+          filePath: tempFilePath,
+          encoding: 'base64',
+          success: (res) => {
+            const base64Encoded = res.data;
+            this.setData({
+              photourl: tempFilePath,
+              uploadingPhoto: true
+            });
+
+            wx.request({
+              url: 'http://10.32.83.58:5000/image/upload',
+              method: 'POST',
+              data: {
+                "content": base64Encoded
+              },
+              success: (res) => {
+                console.log(res.data);
+                this.setData({
+                  photoCloudUrl: res.data as string
+                })
+              },
+              fail: (res) => {
+                console.log("failed for upload");
+              }
+            });
+          }
+        })
       }
-    });
+    })
   }
 })

@@ -5,6 +5,7 @@ Page({
   data: {
     comicurl: '',
     session_token: '',
+    photo_url:'',
     regenerating: false,
     determining: false,
     confirming: false,
@@ -14,15 +15,13 @@ Page({
   },
   async onLoad(option) {
     let userProfile = wx.getStorageSync('userProfile') as LogonResponse;
+    console.log("Comic photo on load: ", option)
     this.setData({
-      comicurl: option.comicurl,
+      comicurl: decodeURIComponent(option.comicurl as string),
       session_token: userProfile.session_token,
-      character_description: userProfile.user_description,
-      style: userProfile.style,
-      seed: userProfile.seed
-    });
-    this.setData({
-      comicurl: "https://comicstorage.blob.core.windows.net/comics/chinese.png"
+      character_description: option.user_description,
+      style: "warm",
+      seed: option.seed
     });
   },
 
@@ -76,7 +75,16 @@ Page({
     }
     this.setData({
       confirming: true
-    })
+    });
+
+    wx.setStorageSync('userProfile', {
+      profile_done: true,
+      session_token: this.data.session_token,
+      user_description: this.data.character_description,
+      seed: this.data.seed,
+      style: 'warm'
+    });
+    
     const payload = {
       "session_token": this.data.session_token,
       "character": this.data.character_description,

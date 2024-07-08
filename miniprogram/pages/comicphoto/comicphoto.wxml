@@ -3,18 +3,19 @@
     <view class="choose-subject-text">Choose your face</view>
   </view>
 
-  <view class="determine-box">
+  <view wx:if="{{determining}}" class="determine-box">
     <view class="confirm-text">Create a comic with this character?</view>
     <view class="confirm-button-group">
-      <view class="confirm-button refuse">No</view>
-      <view class="confirm-button confirm">Yes</view>
+      <view class="confirm-button refuse" bind:tap="clickNo">No</view>
+      <view wx:if="{{!confirming}}" class="confirm-button confirm" bind:tap="determine">Yes</view>
+      <view wx:if="{{confirming}}" class="spinner"></view>
     </view>
   </view>
 
   <view class="button-container">
     <view wx:if="{{!regenerating}}" class="button" bind:tap="regenerate">Regenerate</view>
-    <view wx:if="{{regenerating}}" class="spinner">Spinning</view>
-    <view class="button" bind:tap="determine">OK</view>
+    <view wx:if="{{regenerating}}" class="spinner"></view>
+    <view class="button" bind:tap="clickOk">OK</view>
   </view>
   <navigation activeTab="illusion" />
 </view>

@@ -7,6 +7,7 @@ Page({
     session_token: '',
     regenerating: false,
     determining: false,
+    confirming: false,
     character_description: '',
     style: '',
     seed: ''
@@ -31,7 +32,7 @@ Page({
       regenerating: true
     });
     wx.request({
-      url: 'http://100.64.251.11:5000/image/new/comic', // 替换为你的API地址
+      url: 'http://10.32.83.58:5000/image/new/comic', // 替换为你的API地址
       method: 'POST',
       data: {
         "session_token": "12345",
@@ -69,19 +70,23 @@ Page({
   determine() {
     if (!this.data.session_token || !this.data.character_description || !this.data.style || !this.data.seed) {
       wx.showToast({
-        title: "Missing required information to determine comic character."
+        title: "Missing required info",
       });
+      return;
     }
-
+    this.setData({
+      confirming: true
+    })
+    const payload = {
+      "session_token": this.data.session_token,
+      "character": this.data.character_description,
+      "seed": this.data.seed,
+      "style": "warm"
+    };
     wx.request({
-      url: 'http://100.64.251.11:5000/image/determine',
+      url: 'http://10.32.83.58:5000/image/determine',
       method: 'POST',
-      data: {
-        "session_token": this.data.session_token,
-        "character": this.data.character_description,
-        "seed": this.data.seed,
-        "style": this.data.style
-      },
+      data: payload,
       success: (res) => {
         this.setData({
           regenerating: false
@@ -94,14 +99,23 @@ Page({
             character_description: response.character,
             seed: response.seed,
           });
+          this.setData({
+            confirming: false
+          });
+          wx.navigateTo({
+            url: '/pages/storyInput/storyInput'
+          })
         } else {
+          this.setData({
+            confirming: false
+          });
           console.error('请求失败:', res);
         }
       },
       fail: (err) => {
         console.error('请求出错:', err);
         this.setData({
-          regenerating: false
+          confirming: false
         });
       }
     })
@@ -114,6 +128,12 @@ Page({
   },
 
   clickNo() {
+    this.setData({
+      determining: false
+    })
+  },
+
+  clickYes() {
     this.setData({
       determining: false
     })

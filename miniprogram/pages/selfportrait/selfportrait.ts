@@ -107,11 +107,15 @@ Page({
               success: (res) => {
                 console.log(res.data);
                 this.setData({
-                  photoCloudUrl: res.data as string
+                  photoCloudUrl: res.data as string,
+                  uploadingPhoto:false
                 })
               },
               fail: (res) => {
                 console.log("failed for upload");
+                this.setData({
+                  uploadingPhoto:false
+                });
               }
             });
           }

@@ -128,9 +128,49 @@
 }
 
 .button-group {
-  margin-top: 2vh;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  bottom: 20vh;
+}
+
+.title {
+  margin-top: 2vh;
+  color: #FFF;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.template-container {
+  margin-top: 3vh;
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+}
+
+.hot-template-title {
+  color: #FFF;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.vector{
+  width: 6px;
+  height: 11px;
+  flex-shrink: 0;
+}
+
+.row-wrapper{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }

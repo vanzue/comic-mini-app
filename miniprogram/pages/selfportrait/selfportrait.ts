@@ -52,7 +52,7 @@ Page({
     });
 
     wx.request({
-      url: 'http://10.32.83.58:5000/image/new/comic',
+      url: 'http://100.64.251.11:5000/image/new/comic',
       method: 'POST',
       data: {
         "session_token": "12345",
@@ -64,9 +64,10 @@ Page({
         });
         if (res.statusCode === 200) {
           const response = res.data as ComicPhoto;
+          const photoUrl = this.data.photoCloudUrl as string;
           console.log("comic response:", response);
           wx.navigateTo({
-            url: `/pages/comicphoto/comicphoto?comicurl=${encodeURIComponent(response.url)}&character=${response.character}&seed=${response.seed}`
+            url: `/pages/comicphoto/comicphoto?comicurl=${encodeURIComponent(response.url)}&character=${response.character}&seed=${response.seed}&photo_url=${encodeURIComponent(photoUrl)}}`
           })
         } else {
           console.error('request failed:', res);
@@ -99,7 +100,7 @@ Page({
             });
 
             wx.request({
-              url: 'http://10.32.83.58:5000/image/upload',
+              url: 'http://192.168.0.101:5000/image/upload',
               method: 'POST',
               data: {
                 "content": base64Encoded
@@ -108,13 +109,13 @@ Page({
                 console.log(res.data);
                 this.setData({
                   photoCloudUrl: res.data as string,
-                  uploadingPhoto:false
+                  uploadingPhoto: false
                 })
               },
               fail: (res) => {
                 console.log("failed for upload");
                 this.setData({
-                  uploadingPhoto:false
+                  uploadingPhoto: false
                 });
               }
             });

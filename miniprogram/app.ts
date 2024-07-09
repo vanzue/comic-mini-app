@@ -13,7 +13,7 @@ App({
       success: res => {
         if (res.code) {
           wx.request({
-            url: 'http://localhost:54112/login',
+            url: 'http://100.64.251.11:5000/login',
             method: 'POST',
             data: {
               code: res.code

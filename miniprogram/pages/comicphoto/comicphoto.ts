@@ -19,9 +19,10 @@ Page({
     this.setData({
       comicurl: decodeURIComponent(option.comicurl as string),
       session_token: userProfile.session_token,
-      character_description: option.user_description,
+      character_description: option.character,
       style: "warm",
-      seed: option.seed
+      seed: option.seed,
+      photo_url: decodeURIComponent(option.photo_url as string)
     });
   },
 
@@ -31,7 +32,7 @@ Page({
       regenerating: true
     });
     wx.request({
-      url: 'http://10.32.83.58:5000/image/new/comic', // 替换为你的API地址
+      url: 'http://100.64.251.11:5000/image/new/comic', // 替换为你的API地址
       method: 'POST',
       data: {
         "session_token": "12345",
@@ -67,6 +68,11 @@ Page({
   // style: '',
   // seed: '‘
   determine() {
+    console.log('session_token', this.data.session_token);
+    console.log('character', this.data.character_description);
+    console.log('style', this.data.style);
+    console.log('seed', this.data.seed);
+
     if (!this.data.session_token || !this.data.character_description || !this.data.style || !this.data.seed) {
       wx.showToast({
         title: "Missing required info",
@@ -92,7 +98,7 @@ Page({
       "style": "warm"
     };
     wx.request({
-      url: 'http://10.32.83.58:5000/image/determine',
+      url: 'http://100.64.251.11:5000/image/determine',
       method: 'POST',
       data: payload,
       success: (res) => {

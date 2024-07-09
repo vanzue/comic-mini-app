@@ -71,7 +71,7 @@
   justify-content: space-around;
 }
 
-.confirm-button{
+.confirm-button {
   margin-top: 5vh;
   height: 3vh;
   width: 20%;
@@ -84,10 +84,10 @@
   color: #ffffff;
 }
 
-.refuse{
- background: #BBBFBB;
+.refuse {
+  background: #BBBFBB;
 }
 
-.confirm{
+.confirm {
   background: linear-gradient(181deg, #5ACD7A 0.64%, #0E5B44 118.69%);
 }

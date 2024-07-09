@@ -36,6 +36,23 @@
         </view>
         <image class="vector" src="/assets/vector.svg" mode="aspectFill"></image>
       </view>
+      <view class="template-sample-container">
+        <view class="sample-item" style="background: url('https://comicstorage.blob.core.windows.net/comics/template1.png') no-repeat center center; background-size: cover;" bind:tap="selectTemplate" data-id="1">
+          <view wx:if="{{selectedTemplate==1}}" class="check-container">
+            <image class="checkbox" src="/assets/check.svg" />
+          </view>
+        </view>
+        <view class="sample-item" style="background: url('https://comicstorage.blob.core.windows.net/comics/template2.png') no-repeat center center; background-size: cover;" bind:tap="selectTemplate" data-id="2">
+          <view wx:if="{{selectedTemplate==2}}" class="check-container">
+            <image class="checkbox" src="/assets/check.svg" />
+          </view>
+        </view>
+        <view class="sample-item" style="background: url('https://comicstorage.blob.core.windows.net/comics/template3.png') no-repeat center center; background-size: cover;" bind:tap="selectTemplate" data-id="3">
+          <view wx:if="{{selectedTemplate==3}}" class="check-container">
+            <image class="checkbox" src="/assets/check.svg" />
+          </view>
+        </view>
+      </view>
     </view>
     <view class="button-group">
       <confirmButton text="Generate" bind:generate="generateStory" eventName="generate" />

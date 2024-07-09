@@ -7,7 +7,8 @@ Page({
     charCount: 0,
     selectedGrid: "1",
     selectedPropotion: "1 : 1",
-    hint: ""
+    hint: "",
+    selectedTemplate: 0
   },
 
   onLoad(option) {
@@ -119,4 +120,10 @@ Page({
       url: "/pages/illusion/illusion"
     })
   },
+
+  selectTemplate: function (e: { currentTarget: { dataset: { id: string; }; }; }) {
+    this.setData({
+      selectedTemplate: Number(e.currentTarget.dataset.id)
+    })
+  }
 });

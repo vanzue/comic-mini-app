@@ -1,4 +1,5 @@
 import { ApiKey } from "../../utils/constants";
+import { CharacterStoryComic, LogonResponse } from "../../utils/types";
 
 // index.ts
 Page({
@@ -9,28 +10,53 @@ Page({
     proportion: "1 : 1",
     style: "",
     loading: true,
-    gameStatus: 0
+    gameStatus: 0, 
+    seed: "",
+    story: "",
+    character: "",
   },
   async onLoad(option) {
-    console.log("grid:", this.data.grid);
-    console.log("proportion:", this.data.proportion);
+    const userprofile = wx.getStorageSync('userProfile') as LogonResponse;
 
     this.setData({
-      grid: Number(option.grid),
-      proportion: option.proportion || "1 : 1",
       urls: [],
-      style: String(option.style)
+      style: String(option.style),
+      story: String(option.story),
+      seed: userprofile.seed,
+      character: userprofile.user_description
     });
-    console.log('grid', this.data.grid);
-    console.log('proportion', this.data.proportion);
-    if (!wx.cloud) {
-      console.error('请使用 2.2.3 或以上的基础库以使用云能力');
-    } else {
-      wx.cloud.init({
-        env: 'prod-2gsuyczv841bd4e9'
-      });
-    }
-    this.callContainerAPI(String(option.story), Number(option.grid), String(option.style));
+
+    wx.request({
+      url: 'http://100.64.251.11:5000/image/character/story',
+      method: 'POST',
+      data: {
+        "description": this.data.character,
+        "style": this.data.style,
+        "story": this.data.story,
+        "seed": this.data.seed
+      },
+      success: (res) => {
+        this.setData({
+          loading: false
+        });
+        if (res.statusCode === 200) {
+          const response = res.data as CharacterStoryComic;
+          const photoUrl = response.url;
+          const compressedUrl = response.compressed_url;
+          this.setData({
+            urls: [compressedUrl, photoUrl]
+          })
+        } else {
+          console.error('request failed:', res);
+        }
+      },
+      fail: (err) => {
+        console.error('something error happened:', err);
+        this.setData({
+          regenerating: false
+        });
+      }
+    });
   },
 
   callContainerAPI: async function (shortStory: String, n: Number, style: String) {
@@ -53,8 +79,6 @@ Page({
         method: "POST",
         data: postData
       });
-
-      console.log("get jobId,", result);
 
       // Check if res.data is a string and parse it if it is
       const data = typeof result.data === 'string' ? JSON.parse(result.data) : result.data;

@@ -1,9 +1,5 @@
 <view class="container">
   <view class="draw-area">
-    <view class="progress-container">
-      <progress step="3"></progress>
-    </view>
-
     <view class="comic-status">
       <view class="status-title">
         {{loading?"Waiting...":"All finished!"}}

@@ -3,7 +3,6 @@
 Page({
   data: {
     inputValue: '',
-    selectedStyle: '', // Initially no style is selected
     charCount: 0,
     selectedGrid: "1",
     selectedPropotion: "1 : 1",
@@ -13,9 +12,6 @@ Page({
 
   onLoad(option) {
     console.log(option.style);
-    this.setData({
-      selectedStyle: option.style
-    })
   },
   checkWordLimit(this: any, e: any) {
     const value: string = e.detail.value;
@@ -31,9 +27,8 @@ Page({
   },
 
   generateStory() {
-    if (!this.data.inputValue || !this.data.selectedStyle) {
+    if (!this.data.inputValue) {
       console.log("input:", this.data.inputValue);
-      console.log("style:", this.data.selectedStyle);
       wx.showToast({
         title: "Please input your content",
         icon: 'none',
@@ -41,8 +36,17 @@ Page({
       });
       return;
     }
+
+    const selectedTemplateId = this.data.selectedTemplate;
+    let style = "warm";
+    if (selectedTemplateId == 2) {
+      style = "chinese";
+    } else if (selectedTemplateId == 3) {
+      style = "korean";
+    }
+
     wx.navigateTo({
-      url: `/pages/gallary/gallary?story=${this.data.inputValue}&grid=${this.data.selectedGrid}&proportion=${this.data.selectedPropotion}&style=${this.data.selectedStyle}`
+      url: `/pages/gallary/gallary?story=${this.data.inputValue}&style=${style}`
     });
   },
   onInput: function (e: { detail: { value: string; }; }) {

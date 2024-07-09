@@ -133,4 +133,5 @@
 
 .text-correct{
   color: #D7FFB0;
+  margin-bottom: 5vh;
 }

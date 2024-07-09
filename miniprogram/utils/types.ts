@@ -13,10 +13,15 @@ export interface LogonResponse {
   style: string;
 }
 
-export interface ComicPhoto{
+export interface ComicPhoto {
   compressed_url: string,
   url: string,
   character: string,
   style: string,
   seed: string,
+}
+
+export interface CharacterStoryComic {
+  compressed_url: string,
+  url: string,    
 }

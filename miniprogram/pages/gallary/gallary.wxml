@@ -37,12 +37,23 @@
       <view class="regenerating-text">Regenerating</view>
     </view>
 
-    <view wx:if="{{!regenerating && !loading && !loadingCollection &&!showCollections}}" class="add-to-collection" bind:tap="showCollections">
+    <view wx:if="{{!regenerating && !loading && !loadingCollection &&!showCollections}}" class="add-to-collection" bind:tap="getCollections">
       Add to my collection
     </view>
 
-    <view wx:if="{{loadingCollection || showCollections}}" class="collection-container" bind:tap="showCollections">
-      Add to my collection
+    <!-- <view wx:if="{{loadingCollection || showCollections}}" class="collection-container"> -->
+    <view class="collection-container">
+      <view class="title-container">
+        <view class="save-title">Save to my collection</view>
+        <view class="confirm-button">Confirm</view>
+      </view>
+      <view class="preview-list-container">
+        <view wx:for="{{collections}}" wx:key="{{item.collection_name}}" class="preview-container">
+          <collectionPreview name="{{item.collection_name}}" url="{{item.compressed_comic_urls[0]}}">
+          </collectionPreview>
+          <view class="select-circle"></view>
+        </view>
+      </view>
     </view>
   </view>
   <navigation activeTab="illusion" />

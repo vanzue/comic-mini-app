@@ -1,4 +1,5 @@
 import { ApiKey } from "../../utils/constants";
+import { GetMockComicCollection } from "../../utils/mock";
 import { CharacterStoryComic, ComicCollection, LogonResponse } from "../../utils/types";
 
 // index.ts
@@ -30,7 +31,8 @@ Page({
       seed: userprofile.seed,
       character: userprofile.user_description,
       session_token: userprofile.session_token,
-      regenerating: true
+      regenerating: true,
+      collections: GetMockComicCollection()
     });
 
     this.generateStory();
@@ -153,10 +155,6 @@ Page({
     this.generateStory();
   },
 
-  showCollections() {
-
-  },
-
   generateStory: function () {
     wx.request({
       url: 'http://10.32.83.58:5000/image/character/story',
@@ -215,14 +213,16 @@ Page({
         } else {
           console.error('request failed:', res);
           this.setData({
-            loadingCollection: false
+            loadingCollection: false,
+            showCollections: true
           })
         }
       },
       fail: (err) => {
         console.error('something error happened:', err);
         this.setData({
-          regenerating: false
+          loadingCollection: false,
+          showCollections: false
         });
       }
     });

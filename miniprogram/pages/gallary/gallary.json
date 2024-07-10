@@ -3,6 +3,7 @@
     "card": "/components/card/card",
     "progress": "/components/progress/progress",
     "navigation": "/components/navigation/navigation",
-    "confirmButton": "/components/confirmButton/confirmButton"
+    "confirmButton": "/components/confirmButton/confirmButton",
+    "collectionPreview": "/components/collectionPreview/collectionPreview"
   }
 } 

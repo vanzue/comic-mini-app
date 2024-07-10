@@ -23,5 +23,11 @@ export interface ComicPhoto {
 
 export interface CharacterStoryComic {
   compressed_url: string,
-  url: string,    
+  url: string,
+}
+
+export interface ComicCollection {
+  collection_name: string,
+  compressed_comic_urls: string[],
+  comic_urls: string[]
 }

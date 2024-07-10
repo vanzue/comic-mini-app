@@ -1,5 +1,5 @@
 import { ApiKey } from "../../utils/constants";
-import { CharacterStoryComic, LogonResponse } from "../../utils/types";
+import { CharacterStoryComic, ComicCollection, LogonResponse } from "../../utils/types";
 
 // index.ts
 Page({
@@ -10,10 +10,15 @@ Page({
     proportion: "1 : 1",
     style: "",
     loading: true,
-    gameStatus: 0, 
+    gameStatus: 0,
     seed: "",
     story: "",
     character: "",
+    regenerating: false,
+    session_token: "",
+    collections: [] as ComicCollection[],
+    loadingCollection: false,
+    showCollections: false
   },
   async onLoad(option) {
     const userprofile = wx.getStorageSync('userProfile') as LogonResponse;
@@ -23,40 +28,12 @@ Page({
       style: String(option.style),
       story: String(option.story),
       seed: userprofile.seed,
-      character: userprofile.user_description
+      character: userprofile.user_description,
+      session_token: userprofile.session_token,
+      regenerating: true
     });
 
-    wx.request({
-      url: 'http://100.64.251.11:5000/image/character/story',
-      method: 'POST',
-      data: {
-        "description": this.data.character,
-        "style": this.data.style,
-        "story": this.data.story,
-        "seed": this.data.seed
-      },
-      success: (res) => {
-        this.setData({
-          loading: false
-        });
-        if (res.statusCode === 200) {
-          const response = res.data as CharacterStoryComic;
-          const photoUrl = response.url;
-          const compressedUrl = response.compressed_url;
-          this.setData({
-            urls: [compressedUrl, photoUrl]
-          })
-        } else {
-          console.error('request failed:', res);
-        }
-      },
-      fail: (err) => {
-        console.error('something error happened:', err);
-        this.setData({
-          regenerating: false
-        });
-      }
-    });
+    this.generateStory();
   },
 
   callContainerAPI: async function (shortStory: String, n: Number, style: String) {
@@ -161,6 +138,93 @@ Page({
     wx.previewImage({
       current: url, // 当前显示图片的http链接
       urls: [url] // 需要预览的图片http链接列表，可以是多个
+    });
+  },
+
+  handleRegenerateStory: function () {
+    if (this.data.regenerating) {
+      return;
+    }
+
+    this.setData({
+      regenerating: true
+    });
+
+    this.generateStory();
+  },
+
+  showCollections() {
+
+  },
+
+  generateStory: function () {
+    wx.request({
+      url: 'http://10.32.83.58:5000/image/character/story',
+      method: 'POST',
+      data: {
+        "description": this.data.character,
+        "style": this.data.style,
+        "story": this.data.story,
+        "seed": this.data.seed
+      },
+      success: (res) => {
+        this.setData({
+          loading: false
+        });
+        if (res.statusCode === 200) {
+          const response = res.data as CharacterStoryComic;
+          const photoUrl = response.url;
+          const compressedUrl = response.compressed_url;
+          this.setData({
+            urls: [compressedUrl, photoUrl],
+            regenerating: false
+          })
+        } else {
+          console.error('request failed:', res);
+          this.setData({
+            regenerating: false
+          })
+        }
+      },
+      fail: (err) => {
+        console.error('something error happened:', err);
+        this.setData({
+          regenerating: false
+        });
+      }
+    });
+  },
+
+  getCollections: function () {
+    const session_token = this.data.session_token;
+    this.setData({
+      loadingCollection: true
+    });
+    wx.request({
+      url: `http://10.32.83.58:5000/collection/list/${session_token}`,
+      method: 'GET',
+      success: (res) => {
+        this.setData({
+          loadingCollection: false
+        });
+        if (res.statusCode === 200) {
+          const response = res.data as ComicCollection[];
+          this.setData({
+            collections: response
+          })
+        } else {
+          console.error('request failed:', res);
+          this.setData({
+            loadingCollection: false
+          })
+        }
+      },
+      fail: (err) => {
+        console.error('something error happened:', err);
+        this.setData({
+          regenerating: false
+        });
+      }
     });
   }
 }

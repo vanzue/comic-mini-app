@@ -1,0 +1,10 @@
+<view class="comic-item-container">
+  <view class="comic-item">
+    <view class="comic-image-container">
+      <image class="image" src="{{url}}" mode="aspectFit" />
+    </view>
+    <view class="comic-footer"></view>
+  </view>
+  <view class="collection-title">{{name}}
+  </view>
+</view>

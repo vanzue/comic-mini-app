@@ -135,3 +135,52 @@
   color: #D7FFB0;
   margin-bottom: 5vh;
 }
+
+.regenerating-group{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin {
+  animation: spin 2s linear infinite;
+}
+
+.regenerating-icon{
+  width: 13px;
+  height: 13px;
+  margin-right: 10px;
+}
+
+.regenerating-text{
+  color: #E2E2E2;
+  font-size: 12px;
+}
+
+.add-to-collection{
+  margin-top: 2vh;
+  font-size: 14px;
+  height: 4vh;
+  width: 50%;
+  background-color: #000000;
+  color: #ffffff;
+  border: solid #ffffff 1px;
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.collection-container{
+  
+}

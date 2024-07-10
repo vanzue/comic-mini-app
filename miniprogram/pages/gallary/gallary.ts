@@ -19,7 +19,10 @@ Page({
     session_token: "",
     collections: [] as ComicCollection[],
     loadingCollection: false,
-    showCollections: false
+    showCollections: false,
+    selectedCollectionName: "",
+    addingToCollection: false,
+    added: false
   },
   async onLoad(option) {
     const userprofile = wx.getStorageSync('userProfile') as LogonResponse;
@@ -176,7 +179,7 @@ Page({
           this.setData({
             urls: [compressedUrl, photoUrl],
             regenerating: false
-          })
+          });
         } else {
           console.error('request failed:', res);
           this.setData({
@@ -188,6 +191,45 @@ Page({
         console.error('something error happened:', err);
         this.setData({
           regenerating: false
+        });
+      }
+    });
+  },
+
+  selectCollection: function (e: { currentTarget: { dataset: { name: any; }; }; }) {
+    const selectedCollectoinName = e.currentTarget.dataset.name;
+    this.setData({
+      selectedCollectionName: selectedCollectoinName
+    })
+  },
+  ///collection/add
+  confirmAddComic: function () {
+    this.setData({
+      addingToCollection: true
+    });
+
+    const selectedCollection = this.data.selectedCollectionName;
+    const compressed_url = this.data.urls[0];
+    const url = this.data.urls[1];
+    wx.request({
+      url: 'http://10.32.83.58:5000/collection/add',
+      method: 'POST',
+      data: {
+        session_token: this.data.session_token,
+        collection_name: selectedCollection,
+        compressed_url: compressed_url,
+        url: url
+      },
+      success: (res) => {
+        this.setData({
+          addingToCollection: false,
+          added: true
+        });
+      },
+      fail: (err) => {
+        console.error('something error happened:', err);
+        this.setData({
+          addingToCollection: false
         });
       }
     });

@@ -41,17 +41,21 @@
       Add to my collection
     </view>
 
-    <!-- <view wx:if="{{loadingCollection || showCollections}}" class="collection-container"> -->
-    <view class="collection-container">
+    <view wx:if="{{(loadingCollection || showCollections) && !added}}" class="collection-container">
       <view class="title-container">
         <view class="save-title">Save to my collection</view>
-        <view class="confirm-button">Confirm</view>
+        <view wx:if="{{!addingToCollection}}" class="confirm-button {{selectedCollectionName.length > 0 ? 'active-confirm':''}}" bind:tap="confirmAddComic">Confirm</view>
+        <view wx:if="{{addingToCollection}}" class="spinner"></view>
       </view>
-      <view class="preview-list-container">
+      <view class="collections-list-container">
         <view wx:for="{{collections}}" wx:key="{{item.collection_name}}" class="preview-container">
-          <collectionPreview name="{{item.collection_name}}" url="{{item.compressed_comic_urls[0]}}">
+          <collectionPreview name="{{item.collection_name}}" url="{{item.compressed_comic_urls[0]}}" bind:tap="selectCollection" data-name="{{item.collection_name}}">
           </collectionPreview>
-          <view class="select-circle"></view>
+          <view class="circle-container">
+            <view class="select-circle">
+              <image wx:if="{{selectedCollectionName==item.collection_name}}" src="/assets/check.svg" class="circle-check"></image>
+            </view>
+          </view>
         </view>
       </view>
     </view>

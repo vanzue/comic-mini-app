@@ -1,11 +1,11 @@
-.choose-subject-text{
+.choose-subject-text {
   margin-top: 6vh;
   font-size: 20px;
   font-weight: 700;
   color: #ffffff;
 }
 
-.choose-subject-pill{
+.choose-subject-pill {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -13,14 +13,14 @@
   justify-content: center;
 }
 
-.scene-container{
+.scene-container {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.subject-pill{
+.subject-pill {
   background: linear-gradient(90deg, rgba(154, 85, 106, 0.6) 0%, rgba(178, 57, 151, 0.6) 50.92%, rgba(185, 58, 96, 0.6) 100%);
   color: #ffffff;
   border-radius: 50rpx;
@@ -35,10 +35,10 @@
 }
 
 .active {
-  border:1px solid #ffffff;
+  border: 1px solid #ffffff;
 }
 
-.button-container{
+.button-container {
   margin-top: 8vh;
   display: flex;
   justify-content: center;
@@ -61,21 +61,21 @@
   }
 }
 
-.button{
+.button {
   background: #000000;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 25px;
   width: 95px;
-  height:36px;
+  height: 36px;
   font-size: 14px;
   font-weight: 700;
   color: #ffffff;
   border: 1px solid #ffffff;
 }
 
-.box{
+.box {
   margin-top: 10vh;
   width: 90%;
   height: 45vh;
@@ -86,13 +86,24 @@
   background-color: #F4F4F4;
 }
 
-.icon{
+.icon {
   width: 32px;
   height: 32px;
 }
 
-.photo{
+.photo {
   width: 100%;
   height: 100%;
   border-radius: 16px;
+}
+
+.circle-check {
+  width: 10px;
+  height: 10px;
+}
+
+.circlr-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

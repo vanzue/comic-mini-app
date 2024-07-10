@@ -221,11 +221,22 @@
   justify-content: center;
 }
 
+.circle-container {
+  margin-top: 2px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .select-circle{
   width: 12px;
   height: 12px;
   border-radius: 50%;
   background: #666666;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .preview-container{
@@ -242,4 +253,38 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-around;
+}
+
+.collections-list-container{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.active-confirm{
+  background: #71CD69;
+}
+
+.circle-check {
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  background: #00BC00;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border-left-color: #09f;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

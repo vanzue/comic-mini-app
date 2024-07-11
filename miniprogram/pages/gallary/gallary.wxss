@@ -229,7 +229,15 @@
   align-items: center;
 }
 
-.select-circle{
+.place-holder {
+  margin-top: 2px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.select-circle {
   width: 12px;
   height: 12px;
   border-radius: 50%;
@@ -287,4 +295,13 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.cirle-place-holder{
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,7 +1,12 @@
 <view class="comic-item-container">
   <view class="comic-item">
     <view class="comic-image-container">
-      <image class="image" src="{{url}}" mode="aspectFit" />
+      <image wx:if="{{url.length>0}}" class="image" src="{{url}}" mode="aspectFit" />
+      <view wx:if="{{url.length == 0}}" class="image empty-image">
+        <image src="/assets/plus.svg" class="plus-icon"></image>
+        <view class="horizonton-line"></view>
+        <view class="horizonton-line"></view>
+      </view>
     </view>
     <view class="comic-footer"></view>
   </view>

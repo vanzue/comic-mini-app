@@ -41,7 +41,7 @@
 
 .comic-footer {
   margin-top: 8px;
-  width: 90%;
+  width: 100%;
   height: 2vh;
   background-color: #F5CD94;
   overflow: hidden;
@@ -49,10 +49,37 @@
   border-bottom-left-radius: 10px;
 }
 
-.collection-title{
+
+.collection-title {
   font-size: 10px;
   color: #ffffff;
   width: 100%;
   text-align: center;
   padding-top: 10px;
+}
+
+.empty-image {
+  background: #565656;
+  display: flex;
+  flex-direction: column;
+}
+
+.plus-icon {
+  margin-top: 20px;
+  margin-left: 10px;
+  width: 30px;
+  height: 23px;
+  background: #F5CD94;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.horizonton-line {
+  margin-top: 10px;
+  margin-left: 10px;
+  width: 30px;
+  height: 3px;
+  background: #F5CD94;
 }

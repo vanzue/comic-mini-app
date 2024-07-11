@@ -2,9 +2,9 @@
   <view class="draw-area">
     <text class="title">My Comic Collection</text>
     <view class="comics-container">
-      <block wx:for="{{comics}}" wx:key="id">
-        <collectionPreview url="{{item.image}}" name="{{title}}"></collectionPreview>
-      </block>
+      <view wx:for="{{collections}}" wx:key="collection_name" class="collection-preview">
+        <collectionPreview url="{{item.compressed_comic_urls[0]}}" name="{{item.collection_name}}"></collectionPreview>
+      </view>
     </view>
   </view>
   <navigation activeTab='me'/>

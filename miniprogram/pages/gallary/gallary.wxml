@@ -41,7 +41,8 @@
       Add to my collection
     </view>
 
-    <view wx:if="{{(loadingCollection || showCollections) && !added}}" class="collection-container">
+    <!-- <view wx:if="{{(loadingCollection || showCollections) && !added}}" class="collection-container"> -->
+    <view class="collection-container">
       <view class="title-container">
         <view class="save-title">Save to my collection</view>
         <view wx:if="{{!addingToCollection}}" class="confirm-button {{selectedCollectionName.length > 0 ? 'active-confirm':''}}" bind:tap="confirmAddComic">Confirm</view>
@@ -57,8 +58,16 @@
             </view>
           </view>
         </view>
+        <view class="preview-container">
+          <collectionPreview name="abc" url="">
+          </collectionPreview>
+          <view class="place-holder">
+            <view class="cirle-place-holder">
+            </view>
+          </view>
+        </view>
       </view>
     </view>
+    <navigation activeTab="illusion" />
   </view>
-  <navigation activeTab="illusion" />
 </view>

@@ -4,6 +4,7 @@
     "progress": "/components/progress/progress",
     "navigation": "/components/navigation/navigation",
     "confirmButton": "/components/confirmButton/confirmButton",
-    "collectionPreview": "/components/collectionPreview/collectionPreview"
+    "collectionPreview": "/components/collectionPreview/collectionPreview",
+    "newCollection": "/components/newCollection/newCollection"
   }
 } 

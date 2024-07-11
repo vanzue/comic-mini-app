@@ -22,7 +22,8 @@ Page({
     showCollections: false,
     selectedCollectionName: "",
     addingToCollection: false,
-    added: false
+    added: false,
+    addingNewCollection: false
   },
   async onLoad(option) {
     const userprofile = wx.getStorageSync('userProfile') as LogonResponse;
@@ -194,6 +195,12 @@ Page({
         });
       }
     });
+  },
+
+  addNewCollection: function () {
+    this.setData({
+      addingNewCollection: true
+    })
   },
 
   selectCollection: function (e: { currentTarget: { dataset: { name: any; }; }; }) {

@@ -1,13 +1,17 @@
 Component({
   properties: {
-    name:{
-      type:String,
-      value:""
+    name: {
+      type: String,
+      value: ""
     },
     url: {
       type: String,
       value: ""
-    },  
+    },
+    showName: {
+      type: Boolean,
+      value: true
+    }
   },
   methods: {
     handleTap: function () {

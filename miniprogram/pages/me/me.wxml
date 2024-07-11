@@ -1,11 +1,36 @@
 <view class="container">
   <view class="draw-area">
+    <view wx:if="{{loading}}" class="spinner">
+    </view>
     <text class="title">My Comic Collection</text>
-    <view class="comics-container">
+    <view wx:if="{{selectedCollectionName.length==0}}" class="comics-container">
       <view wx:for="{{collections}}" wx:key="collection_name" class="collection-preview">
-        <collectionPreview url="{{item.compressed_comic_urls[0]}}" name="{{item.collection_name}}"></collectionPreview>
+        <collectionPreview url="{{item.CompressedComics[0]}}" name="{{item.CollectionName}}" bind:tap="selectCollection" data-name="{{item.CollectionName}}"></collectionPreview>
+      </view>
+    </view>
+    <view wx:if="{{selectedCollectionName.length > 0 && uncompressedUrl.length == 0}}" class="single-collection">
+      <swiper class="swiper-container" indicator-dots="{{true}}" autoplay="{{false}}" current="{{current}}">
+        <block wx:for="{{selectedCollection.CompressedComics}}" wx:key="*this">
+          <swiper-item>
+            <image bind:tap="zoomin" class="slide-image" src="{{item}}" mode="aspectFit" data-url="{{item}}" />
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+
+    <view wx:if="{{uncompressedUrl.length>0}}" class="full-pic-container">
+      <image src="{{uncompressedUrl}}" class="picture"></image>
+      <canvas canvas-id="myCanvas" class="overlay-canvas"></canvas>
+      <view class="alter-group">
+        <image class="alter-icon" src="/assets/bullet_point.svg"></image>
+        <image class="alter-icon" src="/assets/pencil.svg"></image>
+        <image class="alter-icon" src="/assets/bubble.svg" bind:tap="prepareInsertBubble"></image>
+        <image class="alter-icon" src="/assets/text.svg"></image>
+        <image class="alter-icon" src="/assets/erase.svg"></image>
+        <image class="alter-icon" src="/assets/camera.svg"></image>
+        <image class="alter-icon" src="/assets/share.svg"></image>
       </view>
     </view>
   </view>
-  <navigation activeTab='me'/>
+  <navigation activeTab='me' />
 </view>

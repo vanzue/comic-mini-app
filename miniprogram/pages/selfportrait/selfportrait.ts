@@ -67,7 +67,7 @@ Page({
           const photoUrl = this.data.photoCloudUrl as string;
           console.log("comic response:", response);
           wx.navigateTo({
-            url: `/pages/comicphoto/comicphoto?comicurl=${encodeURIComponent(response.url)}&character=${response.character}&seed=${response.seed}&photo_url=${encodeURIComponent(photoUrl)}}`
+            url: `/pages/comicphoto/comicphoto?comicurl=${encodeURIComponent(response.url)}&character=${response.character}&seed=${response.seed}&photo_url=${encodeURIComponent(photoUrl)}`
           })
         } else {
           console.error('request failed:', res);
@@ -100,7 +100,7 @@ Page({
             });
 
             wx.request({
-              url: 'http://192.168.0.101:5000/image/upload',
+              url: 'http://100.64.251.11:5000/image/upload',
               method: 'POST',
               data: {
                 "content": base64Encoded

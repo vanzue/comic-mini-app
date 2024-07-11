@@ -37,29 +37,28 @@
       <view class="regenerating-text">Regenerating</view>
     </view>
 
-    <view wx:if="{{!regenerating && !loading && !loadingCollection &&!showCollections}}" class="add-to-collection" bind:tap="getCollections">
+    <view wx:if="{{!regenerating && !loading && !loadingCollection &&!showCollections && !added}}" class="add-to-collection" bind:tap="getCollections">
       Add to my collection
     </view>
 
-    <!-- <view wx:if="{{(loadingCollection || showCollections) && !added}}" class="collection-container"> -->
-    <view class="collection-container">
+    <view wx:if="{{(loadingCollection || showCollections) && !added &&!regenerating}}" class="collection-container">
       <view class="title-container">
         <view class="save-title">Save to my collection</view>
         <view wx:if="{{!addingToCollection}}" class="confirm-button {{selectedCollectionName.length > 0 ? 'active-confirm':''}}" bind:tap="confirmAddComic">Confirm</view>
         <view wx:if="{{addingToCollection}}" class="spinner"></view>
       </view>
       <view class="collections-list-container">
-        <view wx:for="{{collections}}" wx:key="{{item.collection_name}}" class="preview-container">
-          <collectionPreview name="{{item.collection_name}}" url="{{item.compressed_comic_urls[0]}}" bind:tap="selectCollection" data-name="{{item.collection_name}}">
+        <view wx:for="{{collections}}" wx:key="collection_name" class="preview-container">
+          <collectionPreview name="{{item.CollectionName}}" url="{{item.CompressedComics[0]}}" bind:tap="selectCollection" data-name="{{item.CollectionName}}">
           </collectionPreview>
           <view class="circle-container">
             <view class="select-circle">
-              <image wx:if="{{selectedCollectionName==item.collection_name}}" src="/assets/check.svg" class="circle-check"></image>
+              <image wx:if="{{selectedCollectionName==item.CollectionName}}" src="/assets/check.svg" class="circle-check"></image>
             </view>
           </view>
         </view>
-        <view class="preview-container">
-          <collectionPreview name="abc" url="">
+        <view class="preview-container" bind:tap="addToNewCollection">
+          <collectionPreview name="" url="">
           </collectionPreview>
           <view class="place-holder">
             <view class="cirle-place-holder">

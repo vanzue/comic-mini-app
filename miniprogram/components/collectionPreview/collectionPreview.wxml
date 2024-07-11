@@ -1,15 +1,17 @@
 <view class="comic-item-container">
   <view class="comic-item">
-    <view class="comic-image-container">
-      <image wx:if="{{url.length>0}}" class="image" src="{{url}}" mode="aspectFit" />
-      <view wx:if="{{url.length == 0}}" class="image empty-image">
-        <image src="/assets/plus.svg" class="plus-icon"></image>
-        <view class="horizonton-line"></view>
-        <view class="horizonton-line"></view>
+    <view class="thumbnail">
+      <view class="comic-image-container">
+        <image wx:if="{{url.length>0}}" class="image" src="{{url}}" mode="aspectFill" />
+        <view wx:if="{{url.length == 0}}" class="image empty-image">
+          <image src="/assets/plus.svg" class="plus-icon"></image>
+          <view class="horizonton-line"></view>
+          <view class="horizonton-line"></view>
+        </view>
       </view>
+      <view class="comic-footer"></view>
     </view>
-    <view class="comic-footer"></view>
-  </view>
-  <view class="collection-title">{{name}}
+    <view wx:if="{{showName}}" class="collection-title">{{name}}
+    </view>
   </view>
 </view>

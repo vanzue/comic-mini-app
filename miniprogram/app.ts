@@ -4,6 +4,7 @@ import { LogonResponse } from "./utils/types";
 App({
   onLaunch() {
     const userProfile = wx.getStorageSync('userProfile') as LogonResponse;
+    userProfile.session_token = "";
     if (!userProfile || !userProfile.session_token) {
       this.login();
     }
@@ -20,8 +21,8 @@ App({
             },
             success: res => {
               const data = res.data as LogonResponse;
+              console.log('from app.ts logon: ', data);
               wx.setStorageSync('userProfile', data);
-              
               if(!data.user_description){
                 wx.navigateTo({
                   url: "/pages/selfportrait/selfportrait"

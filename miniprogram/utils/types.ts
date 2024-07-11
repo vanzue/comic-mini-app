@@ -26,8 +26,9 @@ export interface CharacterStoryComic {
   url: string,
 }
 
+// keep consistent with web interface.
 export interface ComicCollection {
-  collection_name: string,
-  compressed_comic_urls: string[],
-  comic_urls: string[]
+  CollectionName: string,
+  CompressedComics: string[],
+  Comics: string[]
 }

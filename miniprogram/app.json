@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/gallary/gallary",
     "pages/me/me",
+    "pages/gallary/gallary",
     "pages/storyInput/storyInput",
     "pages/selfportrait/selfportrait",
     "pages/comicphoto/comicphoto",

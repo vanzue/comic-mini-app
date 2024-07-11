@@ -1,5 +1,4 @@
 import { ApiKey } from "../../utils/constants";
-import { GetMockComicCollection } from "../../utils/mock";
 import { CharacterStoryComic, ComicCollection, LogonResponse } from "../../utils/types";
 
 // index.ts
@@ -23,7 +22,6 @@ Page({
     selectedCollectionName: "",
     addingToCollection: false,
     added: false,
-    addingNewCollection: false
   },
   async onLoad(option) {
     const userprofile = wx.getStorageSync('userProfile') as LogonResponse;
@@ -35,8 +33,7 @@ Page({
       seed: userprofile.seed,
       character: userprofile.user_description,
       session_token: userprofile.session_token,
-      regenerating: true,
-      collections: GetMockComicCollection()
+      regenerating: true
     });
 
     this.generateStory();
@@ -153,7 +150,9 @@ Page({
     }
 
     this.setData({
-      regenerating: true
+      regenerating: true,
+      // After clicking regenerates, should
+      // start to regenerate.
     });
 
     this.generateStory();
@@ -161,7 +160,7 @@ Page({
 
   generateStory: function () {
     wx.request({
-      url: 'http://10.32.83.58:5000/image/character/story',
+      url: 'http://100.64.251.11:5000/image/character/story',
       method: 'POST',
       data: {
         "description": this.data.character,
@@ -171,7 +170,8 @@ Page({
       },
       success: (res) => {
         this.setData({
-          loading: false
+          loading: false,
+          added: false
         });
         if (res.statusCode === 200) {
           const response = res.data as CharacterStoryComic;
@@ -197,10 +197,49 @@ Page({
     });
   },
 
-  addNewCollection: function () {
+  formatDate: function () {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based, so add 1
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  },
+
+  addToNewCollection: function () {
     this.setData({
-      addingNewCollection: true
-    })
+      addingToCollection: true
+    });
+
+    const newCollectionName = this.formatDate();
+    const compressed_url = this.data.urls[0];
+    const url = this.data.urls[1];
+    console.log("begin to generate new collection: urls:", 
+    compressed_url, url);
+    wx.request({
+      url: 'http://100.64.251.11:5000/collection/new',
+      method: 'POST',
+      data: {
+        session_token: this.data.session_token,
+        collection_name: newCollectionName,
+        compressed_url: compressed_url,
+        url: url
+      },
+      success: (res) => {
+        this.setData({
+          addingToCollection: false,
+          added: true
+        });
+      },
+      fail: (err) => {
+        console.error('something error happened:', err);
+        this.setData({
+          addingToCollection: false
+        });
+      }
+    });
   },
 
   selectCollection: function (e: { currentTarget: { dataset: { name: any; }; }; }) {
@@ -219,7 +258,7 @@ Page({
     const compressed_url = this.data.urls[0];
     const url = this.data.urls[1];
     wx.request({
-      url: 'http://10.32.83.58:5000/collection/add',
+      url: 'http://100.64.251.11:5000/collection/add',
       method: 'POST',
       data: {
         session_token: this.data.session_token,
@@ -248,7 +287,7 @@ Page({
       loadingCollection: true
     });
     wx.request({
-      url: `http://10.32.83.58:5000/collection/list/${session_token}`,
+      url: `http://100.64.251.11:5000/collection/list/${session_token}`,
       method: 'GET',
       success: (res) => {
         this.setData({
@@ -257,6 +296,8 @@ Page({
         if (res.statusCode === 200) {
           const response = res.data as ComicCollection[];
           this.setData({
+            showCollections: true,
+            loadingCollection:false,
             collections: response
           })
         } else {
@@ -271,7 +312,7 @@ Page({
         console.error('something error happened:', err);
         this.setData({
           loadingCollection: false,
-          showCollections: false
+          showCollections: true
         });
       }
     });

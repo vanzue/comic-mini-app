@@ -15,10 +15,10 @@ Page({
   },
   async onLoad(option) {
     let userProfile = wx.getStorageSync('userProfile') as LogonResponse;
-    console.log("Comic photo on load: ", option)
+    console.log("Comic photo on load: ", userProfile);
     this.setData({
       comicurl: decodeURIComponent(option.comicurl as string),
-      session_token: userProfile.session_token,
+      session_token: "12345",
       character_description: option.character,
       style: "warm",
       seed: option.seed,
@@ -32,11 +32,11 @@ Page({
       regenerating: true
     });
     wx.request({
-      url: 'http://100.64.251.11:5000/image/new/comic', // 替换为你的API地址
+      url: 'http://100.64.251.11:5000/image/new/comic',
       method: 'POST',
       data: {
-        "session_token": "12345",
-        "photo_url": "https://comicstorage.blob.core.windows.net/comics/self2.jpg"
+        "session_token": this.data.session_token,
+        "photo_url": this.data.photo_url
       },
       success: (res) => {
         this.setData({

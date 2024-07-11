@@ -1,4 +1,4 @@
-import { Card, ComicCollection } from "./types";
+import { Card } from "./types";
 
 export function getSampleCards(): Card[] {
   return [
@@ -11,27 +11,5 @@ export function getSampleCards(): Card[] {
     { title: "Startup Experience", subtitle: "Tiktok", image: "https://comicstorage.blob.core.windows.net/comics/landing-7.png", classification: "social" },
     { title: "Heiress Romance", subtitle: "Tiktok", image: "https://comicstorage.blob.core.windows.net/comics/landing-8.png", classification: "social" },
     { title: "Nostalgic Childhood", subtitle: "Tiktok", image: "https://comicstorage.blob.core.windows.net/comics/landing-9.png", classification: "social" },
-  ];
-}
-
-export function GetMockComicCollection(): ComicCollection[] {
-  return [
-    {
-      collection_name: "collection1",
-      compressed_comic_urls: ["https://comicstorage.blob.core.windows.net/comics/modern%20style%201-min.png"],
-      comic_urls: ["https://comicstorage.blob.core.windows.net/comics/modern%20style%201-min.png"]
-    },
-    {
-      collection_name: "collection2",
-      compressed_comic_urls: [
-        "https://comicstorage.blob.core.windows.net/comics/tt-effect.png"
-      ],
-      comic_urls: ["https://comicstorage.blob.core.windows.net/comics/tt-effect.png"]
-    },
-    {
-      collection_name: "collection3",
-      compressed_comic_urls: ["https://comicstorage.blob.core.windows.net/comics/template1.png"],
-      comic_urls: ["https://comicstorage.blob.core.windows.net/comics/template1.png"]
-    }
   ];
 }

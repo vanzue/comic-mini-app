@@ -3,44 +3,43 @@ import { LogonResponse } from "./utils/types";
 // app.ts
 App({
   onLaunch() {
+    wx.cloud.init({
+      env: 'prod-4gt24l9s70faa013',
+      traceUser: true,
+    });
     const userProfile = wx.getStorageSync('userProfile') as LogonResponse;
-    userProfile.session_token = "";
+    console.log("user profile", userProfile);
     if (!userProfile || !userProfile.session_token) {
+      console.log("Will go login.");
       this.login();
     }
+
+    if (!userProfile.user_description) {
+      wx.navigateTo({
+        url: "/pages/selfportrait/selfportrait"
+      });
+    }
   },
+
   login() {
     wx.login({
-      success: res => {
+      success(res) {
         if (res.code) {
-          wx.request({
-            url: 'http://100.64.251.11:5000/login',
-            method: 'POST',
-            data: {
-              code: res.code
-            },
-            success: res => {
-              const data = res.data as LogonResponse;
-              console.log('from app.ts logon: ', data);
-              wx.setStorageSync('userProfile', data);
-              if(!data.user_description){
-                wx.navigateTo({
-                  url: "/pages/selfportrait/selfportrait"
-                })
-              }
-            },
-            fail: err => {
-              wx.showToast({
-                title:"failed to logon"
-              });
-            }
-          });
-        } else {
-          console.log('Failed to logon' + res.errMsg);
+          // use code to 
         }
-      }
-    });
+        else {
+          wx.showToast({
+            title: 'Fail log in',
+          });
+        }
+      },
+    })
   },
+
+  exchangeForSessionToken(code) {
+    
+  },
+
   globalData: {
     userInfo: null
   }

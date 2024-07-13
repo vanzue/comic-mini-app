@@ -32,3 +32,11 @@ export interface ComicCollection {
   CompressedComics: string[],
   Comics: string[]
 }
+
+export interface PollingOptions {
+  jobId: string;
+  interval: number; // 轮询间隔时间，单位毫秒
+  maxAttempts?: number;
+  onSuccess: (response: any) => void; 
+  onFailure: (error: any) => void; 
+}

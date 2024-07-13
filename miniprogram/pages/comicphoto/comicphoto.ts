@@ -32,7 +32,7 @@ Page({
       regenerating: true
     });
     wx.request({
-      url: 'http://100.64.251.11:5000/image/new/comic',
+      url: 'http://100.64.100.69:5000/image/new/comic',
       method: 'POST',
       data: {
         "session_token": this.data.session_token,
@@ -98,7 +98,7 @@ Page({
       "style": "warm"
     };
     wx.request({
-      url: 'http://100.64.251.11:5000/image/determine',
+      url: 'http://100.64.100.69:5000/image/determine',
       method: 'POST',
       data: payload,
       success: (res) => {

@@ -52,7 +52,7 @@ Page({
     });
 
     wx.request({
-      url: 'http://100.64.251.11:5000/image/new/comic',
+      url: 'http://100.64.100.69:5000/image/new/comic',
       method: 'POST',
       data: {
         "session_token": "12345",
@@ -100,7 +100,7 @@ Page({
             });
 
             wx.request({
-              url: 'http://100.64.251.11:5000/image/upload',
+              url: 'http://100.64.100.69:5000/image/upload',
               method: 'POST',
               data: {
                 "content": base64Encoded

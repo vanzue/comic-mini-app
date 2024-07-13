@@ -1,3 +1,4 @@
+import { listCollections } from "../../utils/api";
 import { ComicCollection, LogonResponse } from "../../utils/types";
 
 Page({
@@ -18,7 +19,7 @@ Page({
     });
   },
 
-  onLoad() {
+  async onLoad() {
     const userProfile = wx.getStorageSync('userProfile') as LogonResponse;
     this.setData({
       session_token: userProfile.session_token
@@ -27,43 +28,28 @@ Page({
     this.setData({
       loading: true
     });
-    wx.request({
-      url: `http://100.64.251.11:5000/collection/list/${session_token}`,
-      method: 'GET',
-      success: (res) => {
-        this.setData({
-          loading: false
-        });
-        if (res.statusCode === 200) {
-          const response = res.data as ComicCollection[];
-          console.log("collection list response", response);
-          console.log("collection list", response[0].CompressedComics);
-          this.setData({
-            collections: response
-          })
-        } else {
-          console.error('request failed:', res);
-          this.setData({
-            loading: false,
-            loadingDone: true
-          })
-        }
-      },
-      fail: (err) => {
-        console.error('something error happened:', err);
-        this.setData({
-          loadingCollection: false,
-          showCollections: false
-        });
-      }
-    });
+
+    const result = await listCollections(session_token);
+    if (result.statusCode == 200) {
+      const response = result.data as ComicCollection[];
+      this.setData({
+        collections: response
+      });
+    } else {
+      wx.showToast({
+        title: "failed to list collections"
+      })
+    }
+    this.setData({
+      loading: false,
+      loadingDone: true
+    })
   },
 
 
   selectCollection(e: { currentTarget: { dataset: { name: any; }; }; }) {
     const selectedCollectionName = e.currentTarget.dataset.name;
     const collection = this.data.collections.find(collection => collection.CollectionName == selectedCollectionName);
-    console.log('selected collection:', collection);
     this.setData({
       selectedCollectionName: selectedCollectionName,
       selectedCollection: collection

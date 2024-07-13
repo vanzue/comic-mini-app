@@ -22,6 +22,7 @@ Component({
       console.log("goto idea")
     },
     gotoProfile: function () {
+      console.log('go to me');
       wx.navigateTo({
         url: "/pages/me/me"
       })
@@ -34,7 +35,7 @@ Component({
     },
     gotoCreate: function () {
       wx.navigateTo({
-        url: "/pages/illusion/illusion"
+        url: "/pages/storyInput/storyInput"
       })
     },
   }

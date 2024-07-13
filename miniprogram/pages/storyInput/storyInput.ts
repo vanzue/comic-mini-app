@@ -27,6 +27,7 @@ Page({
   },
 
   generateStory() {
+    console.log("about to generate story");
     if (!this.data.inputValue) {
       console.log("input:", this.data.inputValue);
       wx.showToast({
@@ -54,7 +55,6 @@ Page({
       charCount: e.detail.value.length,
       inputValue: e.detail.value,  // 捕捉到的文字
     });
-    console.log(this.data.inputValue);
   },
 
   onPaste: function () {
@@ -65,7 +65,6 @@ Page({
           inputValue: currentText,
           charCount: currentText.length
         });
-        console.log("Paste action triggered: ", currentText);
       },
       fail(err) {
         console.log("Failed to get clipboard data: ", err);

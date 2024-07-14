@@ -1,4 +1,4 @@
-import { generateCharacterStory, listCollections } from "../../utils/api";
+import { generateCharacterStory, listCollections, pollingJobStatus, newCollection, addComicToCollection } from "../../utils/api";
 import { CharacterStoryComic, ComicCollection, LogonResponse } from "../../utils/types";
 
 interface JobIdResponse {
@@ -8,7 +8,7 @@ interface JobIdResponse {
 // index.ts
 Page({
   data: {
-    urls: [] as String[],
+    urls: [] as string[],
     jobId: "",
     style: "",
     loading: true,
@@ -79,26 +79,38 @@ Page({
     });
     const response = await generateCharacterStory(this.data.character,
       this.data.style, this.data.story, this.data.seed);
-    if (response.statusCode === 200) {
-      const jobIdResponse = response.data as JobIdResponse;
-      const jobId = jobIdResponse.jobId;
-
-      this.setData({
-        jobId: jobId
-      });
-    } else {
+    if (response.statusCode != 200) {
       wx.showToast({
         title: "Error generating comic"
       })
+      return;
     }
+    const jobIdResponse = response.data as JobIdResponse;
+    const jobId = jobIdResponse.jobId;
 
-    this.setData({
-      regenerating: false
+    console.log(`job submitted: jobId: ${jobId}`)
+    pollingJobStatus({
+      jobId: jobId,
+      interval: 1500,
+      maxAttempts: 120,
+      onSuccess: (response) => {
+        console.log('raw response: ', response);
+        const character_comic_response: CharacterStoryComic = JSON.parse(response);
+        console.log('successful job result : ', character_comic_response)
+        this.setData({
+          regenerating: false,
+          urls: [character_comic_response.compressed_url, character_comic_response.url]
+        })
+        console.log(character_comic_response.compressed_url);
+        console.log(character_comic_response.url);
+        console.log("after set, urls: ", this.data.urls);
+      },
+      onFailure: (error) => {
+        this.setData({
+          regenerating: false
+        })
+      }
     })
-  },
-
-  pollingJobStatus: function () {
-    
   },
 
   formatDate: function () {
@@ -112,7 +124,7 @@ Page({
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
   },
 
-  addToNewCollection: function () {
+  addToNewCollection: async function () {
     this.setData({
       addingToCollection: true
     });
@@ -120,29 +132,15 @@ Page({
     const newCollectionName = this.formatDate();
     const compressed_url = this.data.urls[0];
     const url = this.data.urls[1];
-    console.log("begin to generate new collection: urls:",
-      compressed_url, url);
-    wx.request({
-      url: 'http://100.64.100.69:5000/collection/new',
-      method: 'POST',
-      data: {
-        session_token: this.data.session_token,
-        collection_name: newCollectionName,
-        compressed_url: compressed_url,
-        url: url
-      },
-      success: (res) => {
-        this.setData({
-          addingToCollection: false,
-          added: true
-        });
-      },
-      fail: (err) => {
-        console.error('something error happened:', err);
-        this.setData({
-          addingToCollection: false
-        });
-      }
+    let result = await newCollection({
+      compressedUrl: compressed_url,
+      url: url,
+      collectionName: newCollectionName,
+      sessionToken: this.data.session_token
+    })
+    this.setData({
+      addingToCollection: false,
+      added: true
     });
   },
 
@@ -153,7 +151,7 @@ Page({
     })
   },
   ///collection/add
-  confirmAddComic: function () {
+  confirmAddComic: async function () {
     this.setData({
       addingToCollection: true
     });
@@ -161,27 +159,17 @@ Page({
     const selectedCollection = this.data.selectedCollectionName;
     const compressed_url = this.data.urls[0];
     const url = this.data.urls[1];
-    wx.request({
-      url: 'http://100.64.100.69:5000/collection/add',
-      method: 'POST',
-      data: {
-        session_token: this.data.session_token,
-        collection_name: selectedCollection,
-        compressed_url: compressed_url,
-        url: url
-      },
-      success: (res) => {
-        this.setData({
-          addingToCollection: false,
-          added: true
-        });
-      },
-      fail: (err) => {
-        console.error('something error happened:', err);
-        this.setData({
-          addingToCollection: false
-        });
-      }
+
+    let result = await addComicToCollection({
+      sessionToken: this.data.session_token,
+      collectionName: selectedCollection,
+      compressedUrl: compressed_url,
+      url: url
+    });
+
+    this.setData({
+      addingToCollection: false,
+      added: true
     });
   },
 

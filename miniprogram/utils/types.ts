@@ -36,7 +36,25 @@ export interface ComicCollection {
 export interface PollingOptions {
   jobId: string;
   interval: number; // 轮询间隔时间，单位毫秒
-  maxAttempts?: number;
-  onSuccess: (response: any) => void; 
-  onFailure: (error: any) => void; 
+  maxAttempts: number;
+  onSuccess: (response: string) => void;
+  onFailure: (error: string) => void;
+}
+
+export interface JobStatus {
+  JobId: string;
+
+  // Success, Failed, Pending
+  JobStatus: string;
+
+  // It's an explanable json schema result,
+  // Please adjust deserialization based on requirement.
+  Result: string;
+}
+
+export interface newCollectionRequest {
+  compressedUrl: string;
+  url: string;
+  collectionName: string;
+  sessionToken: string;
 }

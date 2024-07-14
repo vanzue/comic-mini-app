@@ -58,3 +58,9 @@ export interface newCollectionRequest {
   collectionName: string;
   sessionToken: string;
 }
+
+export interface characterDescription {
+  character_description: string;
+  seed: string;
+  style: string;
+}

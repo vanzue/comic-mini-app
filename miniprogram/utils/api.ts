@@ -1,4 +1,4 @@
-import { JobStatus, newCollectionRequest, PollingOptions } from "./types";
+import { characterDescription, JobStatus, newCollectionRequest, PollingOptions } from "./types";
 
 export const listCollections = async (session_token: string) => {
   return await wx.cloud.callContainer({
@@ -125,6 +125,51 @@ export const addComicToCollection = async (request: newCollectionRequest) => {
       collection_name: request.collectionName,
       compressed_url: request.compressedUrl,
       url: request.url
+    }
+  });
+
+  return result;
+}
+
+export const uploadImage = async (request: newCollectionRequest) => {
+  const result = await wx.cloud.callContainer({
+    "config": {
+      "env": "prod-4gt24l9s70faa013"
+    },
+    "path": '/collection/new',
+    "header": {
+      "X-WX-SERVICE": "llmproxy",
+      "content-type": "application/json"
+    },
+    "method": "POST",
+    "data": {
+      session_token: request.sessionToken,
+      collection_name: request.collectionName,
+      compressed_url: request.compressedUrl,
+      url: request.url
+    }
+  });
+
+  return result;
+}
+
+
+export const determineDescription = async (session_token: string, request: characterDescription) => {
+  const result = await wx.cloud.callContainer({
+    "config": {
+      "env": "prod-4gt24l9s70faa013"
+    },
+    "path": '/image/determine',
+    "header": {
+      "X-WX-SERVICE": "llmproxy",
+      "content-type": "application/json"
+    },
+    "method": "POST",
+    "data": {
+      session_token: session_token,
+      character: request.character_description,
+      seed: request.seed,
+      style: request.style
     }
   });
 

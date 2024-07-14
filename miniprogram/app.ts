@@ -36,9 +36,6 @@ App({
     })
   },
 
-  exchangeForSessionToken(code) {
-    
-  },
 
   globalData: {
     userInfo: null

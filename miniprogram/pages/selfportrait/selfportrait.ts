@@ -1,4 +1,5 @@
 import { ComicPhoto } from "../../utils/types";
+import { uploadFile } from "../../utils/upload_file";
 
 // page.ts
 Page({
@@ -83,45 +84,6 @@ Page({
   },
 
   handleClickUpload() {
-    wx.chooseMedia({
-      count: 1,
-      sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
-      success: (res) => {
-        const tempFilePath = res.tempFiles[0].tempFilePath;
-        wx.getFileSystemManager().readFile({
-          filePath: tempFilePath,
-          encoding: 'base64',
-          success: (res) => {
-            const base64Encoded = res.data;
-            this.setData({
-              photourl: tempFilePath,
-              uploadingPhoto: true
-            });
-
-            wx.request({
-              url: 'http://100.64.100.69:5000/image/upload',
-              method: 'POST',
-              data: {
-                "content": base64Encoded
-              },
-              success: (res) => {
-                console.log(res.data);
-                this.setData({
-                  photoCloudUrl: res.data as string,
-                  uploadingPhoto: false
-                })
-              },
-              fail: (res) => {
-                console.log("failed for upload");
-                this.setData({
-                  uploadingPhoto: false
-                });
-              }
-            });
-          }
-        })
-      }
-    })
+    uploadFile();
   }
 })

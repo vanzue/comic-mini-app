@@ -1,4 +1,4 @@
-<view class="container" style="background: url('{{comicurl}}') no-repeat center center; background-size: cover;">
+<view class="container" style="background: url('{{comicurl}}') no-repeat center center; background-size: contain;">
   <view class="draw-area">
     <view class="choose-subject-text">Choose your face</view>
   </view>

@@ -11,19 +11,19 @@ Component({
   },
   methods: {
     gotoMoment: function () {
-      wx.navigateTo({
+      wx.redirectTo({
         url: "/pages/moment/moment"
       })
     },
     gotoIdea: function () {
-      wx.navigateTo({
+      wx.redirectTo({
         url: "/pages/index/index"
       })
       console.log("goto idea")
     },
     gotoProfile: function () {
       console.log('go to me');
-      wx.navigateTo({
+      wx.redirectTo({
         url: "/pages/me/me"
       })
     },
@@ -34,8 +34,11 @@ Component({
       console.log("goto message")
     },
     gotoCreate: function () {
-      wx.navigateTo({
-        url: "/pages/storyInput/storyInput"
+      wx.redirectTo({
+        url: "/pages/storyInput/storyInput",
+        fail: function (err) {
+          console.log(err);
+        }
       })
     },
   }

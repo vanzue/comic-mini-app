@@ -38,7 +38,7 @@ export const uploadFile = function (chooseImageCallback: ((param: string) => voi
   * formData: 服务端返回的鉴权参数
   */
   var putFile = function ({ prefix, filePath, key, AuthData }) {
-    // put上传需要读取文件的真实内容来上传
+    console.log("prefix for upload:", prefix)
     const wxfs = wx.getFileSystemManager();
     wxfs.readFile({
       filePath: filePath,
@@ -58,7 +58,7 @@ export const uploadFile = function (chooseImageCallback: ((param: string) => voi
               uploadCallback(key);
             } else {
               wx.showModal({
-                title: '上传失败',
+                title: '上传失败1',
                 content: JSON.stringify(res),
                 showCancel: false,
               });
@@ -66,7 +66,7 @@ export const uploadFile = function (chooseImageCallback: ((param: string) => voi
           },
           fail: function fail(res) {
             wx.showModal({
-              title: '上传失败',
+              title: '上传失败2',
               content: JSON.stringify(res),
               showCancel: false,
             });

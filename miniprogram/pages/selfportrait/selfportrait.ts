@@ -1,3 +1,4 @@
+import { newComic } from "../../utils/api";
 import { ComicPhoto } from "../../utils/types";
 import { uploadFile } from "../../utils/upload_file";
 
@@ -43,7 +44,7 @@ Page({
     })
   },
 
-  handleUploadDone() {
+  async handleUploadDone() {
     if (this.data.requestingComic || this.data.uploadingPhoto) {
       return;
     }
@@ -52,35 +53,21 @@ Page({
       requestingComic: true
     });
 
-    wx.request({
-      url: 'http://100.64.100.69:5000/image/new/comic',
-      method: 'POST',
-      data: {
-        "session_token": "12345",
-        "photo_url": this.data.photoCloudUrl
-      },
-      success: (res) => {
-        this.setData({
-          regenerating: false
-        });
-        if (res.statusCode === 200) {
-          const response = res.data as ComicPhoto;
-          const photoUrl = this.data.photoCloudUrl as string;
-          console.log("comic response:", response);
-          wx.navigateTo({
-            url: `/pages/comicphoto/comicphoto?comicurl=${encodeURIComponent(response.url)}&character=${response.character}&seed=${response.seed}&photo_url=${encodeURIComponent(photoUrl)}`
-          })
-        } else {
-          console.error('request failed:', res);
-        }
-      },
-      fail: (err) => {
-        console.error('something error happened:', err);
-        this.setData({
-          regenerating: false
-        });
-      }
+    const result = await newComic("12345", this.data.photoCloudUrl);
+    this.setData({
+      regenerating: false
     });
+
+    if (result.statusCode == 200) {
+      const response = result.data as ComicPhoto;
+      const photoUrl = this.data.photoCloudUrl as string;
+      console.log("comic response:", response);
+      wx.navigateTo({
+        url: `/pages/comicphoto/comicphoto?comicurl=${encodeURIComponent(response.url)}&character=${response.character}&seed=${response.seed}&photo_url=${encodeURIComponent(photoUrl)}`
+      })
+    } else {
+      console.error('request failed:', result);
+    }
   },
 
   handleClickUpload() {

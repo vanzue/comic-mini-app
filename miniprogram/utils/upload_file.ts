@@ -1,3 +1,5 @@
+import { uploadFileByFilePath } from "./api";
+
 export const uploadFile = function () {
   // 对更多字符编码的 url encode 格式
   var camSafeUrlEncode = function (str: string) {
@@ -14,7 +16,7 @@ export const uploadFile = function () {
     wx.request({
       method: 'GET',
       // 替换为自己服务端地址 获取put上传签名
-      url: 'http://10.32.83.58:5000/put-sign?ext=' + options.ext,
+      url: 'https://stsserver-114840-5-1326649872.sh.run.tcloudbase.com/put-sign?ext=' + options.ext,
       dataType: 'json',
       success: function (result) {
         var data = result.data;
@@ -48,6 +50,7 @@ export const uploadFile = function () {
   var putFile = function ({ prefix, filePath, key, AuthData }) {
     // put上传需要读取文件的真实内容来上传
     const wxfs = wx.getFileSystemManager();
+    console.log("File uploaded key:", key);
     wxfs.readFile({
       filePath: filePath,
       success: function (fileRes) {
@@ -62,11 +65,8 @@ export const uploadFile = function () {
           success: function success(res) {
             var url = prefix + '/' + camSafeUrlEncode(key).replace(/%2F/g, '/');
             if (res.statusCode === 200) {
-              wx.showModal({
-                title: '上传成功',
-                content: url,
-                showCancel: false,
-              });
+              // we should upload the image to blob container as well.
+              uploadFileByFilePath(key);
             } else {
               wx.showModal({
                 title: '上传失败',
@@ -112,3 +112,4 @@ export const uploadFile = function () {
     },
   });
 };
+

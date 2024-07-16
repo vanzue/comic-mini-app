@@ -175,3 +175,46 @@ export const determineDescription = async (session_token: string, request: chara
 
   return result;
 }
+
+
+export const uploadFileByFilePath = async (file_path: string) => {
+  const result = await wx.cloud.callContainer({
+    "config": {
+      "env": "prod-4gt24l9s70faa013"
+    },
+    "path": '/image/upload',
+    "header": {
+      "X-WX-SERVICE": "llmproxy",
+      "content-type": "application/json"
+    },
+    "method": "POST",
+    "data": {
+      filePath: file_path
+    }
+  });
+
+  console.log("After upload to blob container, url", result);
+  return result;
+}
+
+
+export const newComic = async (session_token: string,
+  photo_url: string) => {
+  const result = await wx.cloud.callContainer({
+    "config": {
+      "env": "prod-4gt24l9s70faa013"
+    },
+    "path": '/image/new/comic',
+    "header": {
+      "X-WX-SERVICE": "llmproxy",
+      "content-type": "application/json"
+    },
+    "method": "POST",
+    "data": {
+      session_token: session_token,
+      photo_url: photo_url
+    }
+  });
+  
+  return result;
+}

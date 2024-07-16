@@ -1,3 +1,4 @@
+import { determineDescription, newComic } from "../../utils/api";
 import { ComicPhoto, LogonResponse } from "../../utils/types";
 
 // index.ts
@@ -5,7 +6,7 @@ Page({
   data: {
     comicurl: '',
     session_token: '',
-    photo_url:'',
+    photo_url: '',
     regenerating: false,
     determining: false,
     confirming: false,
@@ -26,48 +27,36 @@ Page({
     });
   },
 
-  regenerate() {
+  async regenerate() {
     console.log("begin to regenerate");
     this.setData({
       regenerating: true
     });
-    wx.request({
-      url: 'http://100.64.100.69:5000/image/new/comic',
-      method: 'POST',
-      data: {
-        "session_token": this.data.session_token,
-        "photo_url": this.data.photo_url
-      },
-      success: (res) => {
-        this.setData({
-          regenerating: false
-        });
-        if (res.statusCode === 200) {
-          const response = res.data as ComicPhoto;
-          console.log("comic response:", response);
-          this.setData({
-            comicurl: response.url,
-            character_description: response.character,
-            seed: response.seed,
-          });
-        } else {
-          console.error('请求失败:', res);
-        }
-      },
-      fail: (err) => {
-        console.error('请求出错:', err);
-        this.setData({
-          regenerating: false
-        });
-      }
+
+    const result = await newComic(this.data.session_token, this.data.photo_url);
+
+    this.setData({
+      regenerating: false
     });
+    if (result.statusCode === 200) {
+      const response = result.data as ComicPhoto;
+      console.log("comic response:", response);
+      this.setData({
+        comicurl: response.url,
+        character_description: response.character,
+        seed: response.seed,
+      });
+    } else {
+      console.error('请求失败:', result);
+    }
   },
+
   // session_token: '',
   // regenerating: false,
   // character_description: '',
   // style: '',
   // seed: '‘
-  determine() {
+  async determine() {
     console.log('session_token', this.data.session_token);
     console.log('character', this.data.character_description);
     console.log('style', this.data.style);
@@ -90,49 +79,36 @@ Page({
       seed: this.data.seed,
       style: 'warm'
     });
-    
-    const payload = {
-      "session_token": this.data.session_token,
-      "character": this.data.character_description,
-      "seed": this.data.seed,
-      "style": "warm"
-    };
-    wx.request({
-      url: 'http://100.64.100.69:5000/image/determine',
-      method: 'POST',
-      data: payload,
-      success: (res) => {
-        this.setData({
-          regenerating: false
-        });
-        if (res.statusCode === 200) {
-          const response = res.data as ComicPhoto;
-          console.log("comic response:", response);
-          this.setData({
-            comicurl: response.url,
-            character_description: response.character,
-            seed: response.seed,
-          });
-          this.setData({
-            confirming: false
-          });
-          wx.navigateTo({
-            url: '/pages/storyInput/storyInput'
-          })
-        } else {
-          this.setData({
-            confirming: false
-          });
-          console.error('请求失败:', res);
-        }
-      },
-      fail: (err) => {
-        console.error('请求出错:', err);
-        this.setData({
-          confirming: false
-        });
-      }
-    })
+
+    const result = await determineDescription(this.data.session_token, {
+      character_description: this.data.character_description,
+      seed: this.data.seed,
+      style: this.data.style
+    });
+
+    this.setData({
+      regenerating: false
+    });
+    if (result.statusCode === 200) {
+      const response = result.data as ComicPhoto;
+      console.log("comic response:", response);
+      this.setData({
+        comicurl: response.url,
+        character_description: response.character,
+        seed: response.seed,
+      });
+      this.setData({
+        confirming: false
+      });
+      wx.navigateTo({
+        url: '/pages/storyInput/storyInput'
+      })
+    } else {
+      this.setData({
+        confirming: false
+      });
+      console.error('请求失败:', result);
+    }
   },
 
   clickOk() {

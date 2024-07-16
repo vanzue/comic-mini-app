@@ -9,7 +9,7 @@ Page({
     step: "select-subject",
     photourl: '',
     photoCloudUrl: '',
-    uploadingPhoto: true,
+    uploadingPhoto: false,
     requestingComic: false
   },
 
@@ -65,7 +65,7 @@ Page({
       return;
     }
 
-    const job_id_response : jobIdResponse = result.data as jobIdResponse;
+    const job_id_response: jobIdResponse = result.data as jobIdResponse;
     console.log("Job id from cloud: ", job_id_response.jobId);
     pollingJobStatus({
       jobId: job_id_response.jobId,
@@ -117,5 +117,8 @@ Page({
 
   handleClickUpload() {
     uploadFile(this.setSelectedUrl, this.uploadFileToCloud);
+    this.setData({
+      uploadingPhoto: true
+    })
   }
 })

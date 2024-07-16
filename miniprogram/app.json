@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/selfportrait/selfportrait",
-    "pages/gallary/gallary",
     "pages/moment/moment",
+    "pages/gallary/gallary",
     "pages/me/me",
     "pages/storyInput/storyInput",
     "pages/comicphoto/comicphoto",

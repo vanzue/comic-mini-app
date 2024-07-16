@@ -1,5 +1,7 @@
+import { requestSignature } from "./api";
+
 export const uploadFile = function (chooseImageCallback: ((param: string) => void),
-uploadCallback: ((param: string) => void),) {
+  uploadCallback: ((param: string) => void),) {
   // 对更多字符编码的 url encode 格式
   var camSafeUrlEncode = function (str: string) {
     return encodeURIComponent(str)
@@ -12,12 +14,9 @@ uploadCallback: ((param: string) => void),) {
 
   // 获取签名
   var getAuthorization = function (options: { ext: string }, callback: { (AuthData: any): void; (arg0: string | Record<string, any> | ArrayBuffer): void; }) {
-    wx.request({
-      method: 'GET',
-      // 替换为自己服务端地址 获取put上传签名
-      url: 'https://stsserver-114840-5-1326649872.sh.run.tcloudbase.com/put-sign?ext=' + options.ext,
-      dataType: 'json',
-      success: function (result) {
+    requestSignature(options.ext).then(
+      result => {
+        console.log("Get Authorization Done, result:", result);
         var data = result.data;
         if (data) {
           callback(data);
@@ -28,16 +27,8 @@ uploadCallback: ((param: string) => void),) {
             showCancel: false,
           });
         }
-      },
-
-      fail: function (err: any) {
-        wx.showModal({
-          title: '临时密钥获取失败',
-          content: JSON.stringify(err),
-          showCancel: false,
-        });
       }
-    });
+    )
   };
 
   /**

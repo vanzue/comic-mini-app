@@ -19,8 +19,8 @@
         <image wx:if="{{!!photourl}}" src="{{photourl}}" class="photo" mode="aspectFill" />
       </view>
       <view class="button-container">
-        <view wx:if="{{!requestingComic}}" class="button" bind:tap="handleUploadDone">Next</view>
-        <view wx:if="{{requestingComic}}" class="spinner"></view>
+        <view wx:if="{{!requestingComic && !uploadingPhoto}}" class="button" bind:tap="handleUploadDone">Next</view>
+        <view wx:else class="spinner"></view>
       </view>
     </view>
   </view>

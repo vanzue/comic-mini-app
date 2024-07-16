@@ -216,6 +216,22 @@ export const newComic = async (session_token: string,
       photo_url: photo_url
     }
   });
-  
+
   return result;
+}
+
+export const requestSignature = (ext: string) => {
+  return wx.cloud.callContainer({
+    "config": {
+      "env": "prod-4gt24l9s70faa013"
+    },
+    "path": '/put-sign?ext=' + ext,
+    "header": {
+      "X-WX-SERVICE": "stsserver",
+      "content-type": "application/json",
+      "x-api-key": "6PG2oz3HzR9fY4siesUMJxKbZRxn/h4Q+qAIlbQ0/pQ="
+    },
+    "method": "GET",
+    "data": ""
+  });
 }

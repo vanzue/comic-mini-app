@@ -30,21 +30,6 @@
   border: 1px solid #ffffff;
 }
 
-.spinner {
-  border: 4px solid rgba(0, 0, 0, 0.1);
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  border-left-color: #09f;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .determine-box {
   background: linear-gradient(180deg, rgba(218, 153, 153, 0.9), rgba(153, 62, 117, 0.9) 47.1%, rgba(144, 80, 107, 0.9));
   border-radius: 34px;

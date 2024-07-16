@@ -18,13 +18,13 @@
       </swiper>
     </view>
 
-    <view wx:if="{{uncompressedUrl.length>0}}" class="full-pic-container">
-      <image src="{{uncompressedUrl}}" class="picture"></image>
+    <view wx:if="{{uncompressedUrl.length > 0}}" class="full-pic-container">
+      <image src="{{uncompressedUrl}}" class="picture" bind:tap="doAction"></image>
       <canvas canvas-id="myCanvas" class="overlay-canvas"></canvas>
       <view class="alter-group">
         <image class="alter-icon" src="/assets/bullet_point.svg"></image>
         <image class="alter-icon" src="/assets/pencil.svg"></image>
-        <image class="alter-icon" src="/assets/bubble.svg" bind:tap="prepareInsertBubble"></image>
+        <image class="alter-icon" src="/assets/bubble.svg" bind:tap="prepareToAddBubble"></image>
         <image class="alter-icon" src="/assets/text.svg"></image>
         <image class="alter-icon" src="/assets/erase.svg"></image>
         <image class="alter-icon" src="/assets/camera.svg"></image>

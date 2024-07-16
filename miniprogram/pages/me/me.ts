@@ -1,6 +1,11 @@
 import { listCollections } from "../../utils/api";
-import { getMockCollection } from "../../utils/mock";
 import { ComicCollection, LogonResponse } from "../../utils/types";
+
+enum comicStatus {
+  view,
+  prepareToInsertBubble,
+  bubbleInserted,
+}
 
 Page({
   data: {
@@ -11,7 +16,8 @@ Page({
     selectedCollectionName: "",
     selectedCollection: null as ComicCollection | null,
     current: 0,
-    uncompressedUrl: ""
+    uncompressedUrl: "",
+    comicStatus: comicStatus.view
   },
 
   swiperChange(e: { detail: { current: any; }; }) {
@@ -68,4 +74,10 @@ Page({
       uncompressedUrl: uncompressedurl
     });
   },
+
+  prepareInsertBubble() {
+    this.setData({
+      comicStatus: comicStatus.prepareToInsertBubble
+    })
+  }
 })

@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "navigation": "/components/navigation/navigation",
-    "collectionPreview": "/components/collectionPreview/collectionPreview"
+    "collectionPreview": "/components/collectionPreview/collectionPreview",
+    "bubble": "/components/bubble/bubble"
   }
 }

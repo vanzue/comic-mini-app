@@ -46,8 +46,6 @@ Page({
   },
 
   async handleUploadDone() {
-    console.log("clicks handle next");
-
     if (this.data.requestingComic || this.data.uploadingPhoto) {
       return;
     }

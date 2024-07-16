@@ -1,4 +1,5 @@
 import { listCollections } from "../../utils/api";
+import { getMockCollection } from "../../utils/mock";
 import { ComicCollection, LogonResponse } from "../../utils/types";
 
 Page({
@@ -33,7 +34,8 @@ Page({
     if (result.statusCode == 200) {
       const response = result.data as ComicCollection[];
       this.setData({
-        collections: response
+        // collections: response
+        collections: getMockCollection()
       });
     } else {
       wx.showToast({

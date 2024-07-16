@@ -1,4 +1,4 @@
-import { Card } from "./types";
+import { Card, ComicCollection } from "./types";
 
 export function getSampleCards(): Card[] {
   return [
@@ -12,4 +12,14 @@ export function getSampleCards(): Card[] {
     { title: "Heiress Romance", subtitle: "Tiktok", image: "https://comicstorage.blob.core.windows.net/comics/landing-8.png", classification: "social" },
     { title: "Nostalgic Childhood", subtitle: "Tiktok", image: "https://comicstorage.blob.core.windows.net/comics/landing-9.png", classification: "social" },
   ];
+}
+
+export function getMockCollection(): ComicCollection[] {
+  return [
+    {
+      CollectionName: "collection1",
+      CompressedComics: ["https://comicstorage.blob.core.windows.net/comics/3391e5d9-48db-45.jpg"],
+      Comics: ["https://comicstorage.blob.core.windows.net/comics/04503cef-4542-44.jpg"]
+    }
+  ]
 }

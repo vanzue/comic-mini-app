@@ -15,7 +15,7 @@
     <view class="scene-container" wx:if="{{step=='upload-photo'}}">
       <view class="choose-subject-text">Upload your frontal photo</view>
       <view class="box" bind:tap="handleClickUpload">
-        <image wx:if="{{!photourl}}" src="/assets/upload-photo.svg" class="icon" mode="aspectFit" />
+        <image wx:if="{{!photourl}}" src="/assets/upload-photo.svg" class="icon" mode="aspectFill" />
         <image wx:if="{{!!photourl}}" src="{{photourl}}" class="photo" mode="aspectFill" />
       </view>
       <view class="button-container">

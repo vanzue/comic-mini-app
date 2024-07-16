@@ -1,6 +1,5 @@
-import { uploadFileByFilePath } from "./api";
-
-export const uploadFile = function () {
+export const uploadFile = function (chooseImageCallback: ((param: string) => void),
+uploadCallback: ((param: string) => void),) {
   // 对更多字符编码的 url encode 格式
   var camSafeUrlEncode = function (str: string) {
     return encodeURIComponent(str)
@@ -50,7 +49,6 @@ export const uploadFile = function () {
   var putFile = function ({ prefix, filePath, key, AuthData }) {
     // put上传需要读取文件的真实内容来上传
     const wxfs = wx.getFileSystemManager();
-    console.log("File uploaded key:", key);
     wxfs.readFile({
       filePath: filePath,
       success: function (fileRes) {
@@ -66,7 +64,7 @@ export const uploadFile = function () {
             var url = prefix + '/' + camSafeUrlEncode(key).replace(/%2F/g, '/');
             if (res.statusCode === 200) {
               // we should upload the image to blob container as well.
-              uploadFileByFilePath(key);
+              uploadCallback(key);
             } else {
               wx.showModal({
                 title: '上传失败',
@@ -74,8 +72,6 @@ export const uploadFile = function () {
                 showCancel: false,
               });
             }
-            console.log(res.statusCode);
-            console.log(url);
           },
           fail: function fail(res) {
             wx.showModal({
@@ -95,7 +91,6 @@ export const uploadFile = function () {
     var fileExt = extIndex >= -1 ? filePath.substr(extIndex + 1) : '';
     getAuthorization({ ext: fileExt }, function (AuthData: any) {
       // 确认AuthData格式是否正确
-      console.log(AuthData);
       const prefix = 'https://' + AuthData.cosHost;
       const key = AuthData.cosKey;
       putFile({ prefix, filePath, key, AuthData });
@@ -108,6 +103,7 @@ export const uploadFile = function () {
     sizeType: ['original'], // 可以指定是原图还是压缩图，这里默认用原图
     sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
     success: function (res) {
+      chooseImageCallback(res.tempFiles[0].tempFilePath);
       uploadFile(res.tempFiles[0].tempFilePath);
     },
   });

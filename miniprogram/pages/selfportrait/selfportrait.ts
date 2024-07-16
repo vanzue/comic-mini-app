@@ -1,4 +1,4 @@
-import { newComic } from "../../utils/api";
+import { newComic, uploadFileByFilePath } from "../../utils/api";
 import { ComicPhoto } from "../../utils/types";
 import { uploadFile } from "../../utils/upload_file";
 
@@ -39,12 +39,15 @@ Page({
   },
 
   handleNext() {
+    console.log("clicks handle next");
     this.setData({
       step: "upload-photo"
     })
   },
 
   async handleUploadDone() {
+    console.log("clicks handle next");
+
     if (this.data.requestingComic || this.data.uploadingPhoto) {
       return;
     }
@@ -70,7 +73,30 @@ Page({
     }
   },
 
+  setSelectedUrl(local_url: string) {
+    this.setData({
+      photourl: local_url
+    });
+  },
+
+  async uploadFileToCloud(file_key: string) {
+    const result = await uploadFileByFilePath(file_key);
+    this.setData({
+      uploadingPhoto: false
+    })
+    if (result.statusCode == 200) {
+      console.log("Successfully uploaded photo to comic blob storage", result.data);
+      this.setData({
+        photoCloudUrl: result.data
+      });
+    } else {
+      wx.showToast({
+        title: "Something wrong happened"
+      })
+    }
+  },
+
   handleClickUpload() {
-    uploadFile();
+    uploadFile(this.setSelectedUrl, this.uploadFileToCloud);
   }
 })

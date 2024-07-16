@@ -64,3 +64,7 @@ export interface characterDescription {
   seed: string;
   style: string;
 }
+
+export interface jobIdResponse {
+  jobId: string;
+}

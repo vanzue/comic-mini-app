@@ -1,4 +1,4 @@
-import { characterDescription, JobStatus, newCollectionRequest, PollingOptions } from "./types";
+import { characterDescription, jobIdResponse, JobStatus, newCollectionRequest, PollingOptions } from "./types";
 
 export const listCollections = async (session_token: string) => {
   return await wx.cloud.callContainer({
@@ -36,6 +36,7 @@ export const generateCharacterStory = async (character_description: string, comi
 }
 
 export const checkJobStatus = async (job_id: string) => {
+  console.log("job id to call:", job_id);
   return await wx.cloud.callContainer({
     "config": {
       "env": "prod-4gt24l9s70faa013"

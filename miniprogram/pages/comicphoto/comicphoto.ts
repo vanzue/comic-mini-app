@@ -1,5 +1,5 @@
-import { determineDescription, newComic } from "../../utils/api";
-import { ComicPhoto, LogonResponse } from "../../utils/types";
+import { determineDescription, newComic, pollingJobStatus } from "../../utils/api";
+import { ComicPhoto, jobIdResponse, LogonResponse } from "../../utils/types";
 
 // index.ts
 Page({
@@ -35,27 +35,47 @@ Page({
 
     const result = await newComic(this.data.session_token, this.data.photo_url);
 
+    if (result.statusCode != 200) {
+      wx.showToast({
+        title: 'Create character failed.'
+      })
+      this.setData({
+        regenerating: false
+      });
+      return;
+    }
+
+    const job_id_response: jobIdResponse = result.data as jobIdResponse;
+    console.log("Job id from cloud: ", job_id_response.jobId);
+    pollingJobStatus({
+      jobId: job_id_response.jobId,
+      interval: 1500,
+      maxAttempts: 120,
+      onSuccess: this.generateComicCharacterSuccessfully,
+      onFailure: this.generateComicCharacterFailed
+    })
+  },
+
+  generateComicCharacterSuccessfully(result: string) {
+    const comic_response: ComicPhoto = JSON.parse(result) as ComicPhoto;
+    console.log("comic response:", comic_response);
+    this.setData({
+      comicurl: comic_response.url,
+      character_description: comic_response.character,
+      seed: comic_response.seed,
+      regenerating: false
+    });
+  },
+
+  generateComicCharacterFailed(result: string) {
+    wx.showToast({
+      title: "Failed to generate comic."
+    })
     this.setData({
       regenerating: false
     });
-    if (result.statusCode === 200) {
-      const response = result.data as ComicPhoto;
-      console.log("comic response:", response);
-      this.setData({
-        comicurl: response.url,
-        character_description: response.character,
-        seed: response.seed,
-      });
-    } else {
-      console.error('请求失败:', result);
-    }
   },
 
-  // session_token: '',
-  // regenerating: false,
-  // character_description: '',
-  // style: '',
-  // seed: '‘
   async determine() {
     console.log('session_token', this.data.session_token);
     console.log('character', this.data.character_description);

@@ -58,9 +58,11 @@ Page({
 
   zoomin(e: { currentTarget: { dataset: { url: any; }; }; }) {
     const url = e.currentTarget.dataset.url;
-    const index = this.data.selectedCollection?.CompressedComics.findIndex(comic => comic == url) ?? 0;
-
-    const uncompressedurl = this.data.selectedCollection?.Comics[index];
+    if (!this.data.selectedCollection) {
+      return;
+    }
+    const index = this.data.selectedCollection.CompressedComics.findIndex(comic => comic == url);
+    const uncompressedurl = this.data.selectedCollection.Comics[index];
     this.setData({
       uncompressedUrl: uncompressedurl
     });

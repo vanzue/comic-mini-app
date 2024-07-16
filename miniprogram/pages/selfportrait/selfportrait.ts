@@ -1,5 +1,5 @@
-import { newComic, uploadFileByFilePath } from "../../utils/api";
-import { ComicPhoto } from "../../utils/types";
+import { newComic, pollingJobStatus, uploadFileByFilePath } from "../../utils/api";
+import { ComicPhoto, jobIdResponse } from "../../utils/types";
 import { uploadFile } from "../../utils/upload_file";
 
 // page.ts
@@ -55,20 +55,41 @@ Page({
     });
 
     const result = await newComic("12345", this.data.photoCloudUrl);
-    this.setData({
-      regenerating: false
-    });
-
-    if (result.statusCode == 200) {
-      const response = result.data as ComicPhoto;
-      const photoUrl = this.data.photoCloudUrl as string;
-      console.log("comic response:", response);
-      wx.navigateTo({
-        url: `/pages/comicphoto/comicphoto?comicurl=${encodeURIComponent(response.url)}&character=${response.character}&seed=${response.seed}&photo_url=${encodeURIComponent(photoUrl)}`
+    if (result.statusCode != 200) {
+      wx.showToast({
+        title: "Something wrong happened."
       })
-    } else {
-      console.error('request failed:', result);
+      this.setData({
+        requestingComic: true,
+      });
+      return;
     }
+
+    const job_id_response : jobIdResponse = result.data as jobIdResponse;
+    console.log("Job id from cloud: ", job_id_response.jobId);
+    pollingJobStatus({
+      jobId: job_id_response.jobId,
+      interval: 1500,
+      maxAttempts: 120,
+      onSuccess: this.generateCharacterComicSuccessfully,
+      onFailure: this.generateCharacterComicFailed
+    })
+  },
+
+  generateCharacterComicFailed(result: string) {
+    wx.showToast({
+      title: "Failed to generate comic photo for character."
+    });
+  },
+
+  generateCharacterComicSuccessfully(result: string) {
+    // we should expect to get a json formated string as response.
+    const comic_photo: ComicPhoto = JSON.parse(result) as ComicPhoto
+    console.log("comic response:", comic_photo);
+    const photoUrl = this.data.photoCloudUrl as string;
+    wx.navigateTo({
+      url: `/pages/comicphoto/comicphoto?comicurl=${encodeURIComponent(comic_photo.url)}&character=${comic_photo.character}&seed=${comic_photo.seed}&photo_url=${encodeURIComponent(photoUrl)}`
+    })
   },
 
   setSelectedUrl(local_url: string) {

@@ -12,7 +12,7 @@
       <swiper class="swiper-container" indicator-dots="{{true}}" autoplay="{{false}}" current="{{current}}">
         <block wx:for="{{selectedCollection.CompressedComics}}" wx:key="*this">
           <swiper-item>
-            <image bind:tap="zoomin" class="slide-image" src="{{item}}" mode="aspectFill" data-url="{{item}}" />
+            <image bind:tap="zoomin" class="slide-image" src="{{item}}" mode="scaleToFill" data-url="{{item}}" />
           </swiper-item>
         </block>
       </swiper>

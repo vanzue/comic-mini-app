@@ -8,7 +8,7 @@
 }
 
 .comics-container {
-  margin-top: 10vh;
+  margin-top: 5vh;
   display: flex;
   flex-wrap: wrap;
   width: 100%;
@@ -100,6 +100,7 @@
 }
 
 .single-collection {
+  margin-top: 5vh;
   height: 50vh;
   display: flex;
   width: 100%;

@@ -34,8 +34,7 @@ Page({
     if (result.statusCode == 200) {
       const response = result.data as ComicCollection[];
       this.setData({
-        // collections: response
-        collections: getMockCollection()
+        collections: response
       });
     } else {
       wx.showToast({

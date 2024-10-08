@@ -1,4 +1,4 @@
-import { newComic, pollingJobStatus, uploadFileByFilePath } from "../../utils/api";
+import { newComic, pollingJobStatus } from "../../utils/api";
 import { ComicPhoto, jobIdResponse } from "../../utils/types";
 import { uploadFile } from "../../utils/upload_file";
 
@@ -98,25 +98,17 @@ Page({
     });
   },
 
-  async uploadFileToCloud(file_key: string) {
-    const result = await uploadFileByFilePath(file_key);
+  async setCloudUrl(cloudUrl: string) {
     this.setData({
       uploadingPhoto: false
     })
-    if (result.statusCode == 200) {
-      console.log("Successfully uploaded photo to comic blob storage", result.data);
-      this.setData({
-        photoCloudUrl: result.data
-      });
-    } else {
-      wx.showToast({
-        title: "Something wrong happened"
-      })
-    }
+    this.setData({
+      photoCloudUrl: cloudUrl
+    });
   },
 
   handleClickUpload() {
-    uploadFile(this.setSelectedUrl, this.uploadFileToCloud);
+    uploadFile(this.setSelectedUrl, this.setCloudUrl);
     this.setData({
       uploadingPhoto: true
     })
